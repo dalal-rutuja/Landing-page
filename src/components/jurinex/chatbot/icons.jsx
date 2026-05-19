@@ -55,12 +55,17 @@ export const IconLock = (p) => (
 
 export const IconBot = (p) => (
   <svg {...base} {...p}>
-    <rect x="4" y="8" width="16" height="12" rx="2" />
-    <path d="M12 8V4" />
-    <circle cx="12" cy="3" r="1" />
-    <line x1="9" y1="13" x2="9" y2="14" />
-    <line x1="15" y1="13" x2="15" y2="14" />
-    <path d="M9.5 17h5" />
+    {/* Antenna */}
+    <line x1="12" y1="5" x2="12" y2="7.5" />
+    <circle cx="12" cy="3.6" r="1.3" />
+    {/* Side ears */}
+    <rect x="2" y="12" width="2.6" height="4" rx="1.1" />
+    <rect x="19.4" y="12" width="2.6" height="4" rx="1.1" />
+    {/* Head */}
+    <rect x="4.5" y="7.5" width="15" height="12.5" rx="4" />
+    {/* Eyes (filled) */}
+    <circle cx="9.5" cy="13.8" r="1.7" fill="currentColor" stroke="none" />
+    <circle cx="14.5" cy="13.8" r="1.7" fill="currentColor" stroke="none" />
   </svg>
 )
 

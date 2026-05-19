@@ -9,7 +9,6 @@ import { useVoiceChat } from "./useVoiceChat"
 import {
   IconBot,
   IconCalendar,
-  IconChat,
   IconClose,
   IconLock,
   IconMic,
@@ -51,6 +50,7 @@ export default function Chatbot() {
   )
   // Inline demo-booking form: { slot, name, email, company, submitting, error }
   const [booking, setBooking] = useState(null)
+  const [voiceSlotPanel, setVoiceSlotPanel] = useState(null)
 
   const scrollRef = useRef(null)
   const inputRef = useRef(null)
@@ -139,13 +139,8 @@ export default function Chatbot() {
     try {
       const slots = await getDemoSlots()
       if (Array.isArray(slots) && slots.length) {
-        push(
-          mkMsg("assistant", "Tap a slot to pick your demo time:", {
-            type: "slots",
-            slots,
-            voice: true,
-          }),
-        )
+        push(mkMsg("assistant", "We have slots available. Please select one below."))
+        setVoiceSlotPanel(slots)
       } else {
         voiceSlotsShownRef.current = false
         push(
@@ -176,6 +171,7 @@ export default function Chatbot() {
   const toggleVoice = useCallback(() => {
     onTurnComplete() // seal any open voice bubble before toggling
     voiceSlotsShownRef.current = false
+    setVoiceSlotPanel(null)
     if (voice.isActive) {
       voice.stop()
     } else {
@@ -224,6 +220,7 @@ export default function Chatbot() {
   // --- Demo booking --------------------------------------------------------
   const openDemoSlots = useCallback(async () => {
     if (sending) return
+    setVoiceSlotPanel(null)
     setSending(true)
     push(mkMsg("user", "I'd like to book a free demo."))
     try {
@@ -256,6 +253,7 @@ export default function Chatbot() {
       // During a voice call, hand the pick back to the agent (per the WS
       // protocol) and let it collect name/email by voice — no typed form.
       if (voice.isActive) {
+        setVoiceSlotPanel(null)
         voice.sendText(
           `The user selected slot_id=${slot.id} (${slot.label}). ` +
             `Ask for their full name and email to confirm the demo.`,
@@ -353,7 +351,7 @@ export default function Chatbot() {
         aria-label="Open JuriNex AI assistant"
         onClick={() => setOpen(true)}
       >
-        <IconChat width="24" height="24" />
+        <IconBot width="26" height="26" />
       </button>
     )
   }
@@ -417,7 +415,7 @@ export default function Chatbot() {
                 {m.content}
               </div>
 
-              {m.type === "slots" && (
+              {m.type === "slots" && !m.voice && (
                 <div className="jx-slots">
                   {m.slots.map((s) => (
                     <button
@@ -521,6 +519,37 @@ export default function Chatbot() {
           </div>
         )}
       </div>
+
+      {voiceSlotPanel && (
+        <section className="jx-voice-slots" aria-label="Book a demo slots">
+          <div className="jx-voice-slots-head">
+            <div className="jx-voice-slots-title">Book a Demo</div>
+            <button
+              type="button"
+              className="jx-voice-slots-close"
+              onClick={() => setVoiceSlotPanel(null)}
+              aria-label="Close demo slots"
+            >
+              <IconClose width="14" height="14" />
+            </button>
+          </div>
+          <div className="jx-voice-slots-sub">Select an available time slot:</div>
+          <div className="jx-voice-slots-list">
+            {voiceSlotPanel.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                className="jx-slot"
+                onClick={() => chooseSlot(s)}
+                disabled={!!booking}
+              >
+                <IconCalendar width="14" height="14" />
+                {s.label}
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="jx-chat-foot">
         <div className="jx-composer">

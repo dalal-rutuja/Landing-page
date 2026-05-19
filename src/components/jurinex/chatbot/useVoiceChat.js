@@ -69,7 +69,11 @@ function joinText(prev, next) {
 // The voice agent only *speaks* demo slots — it never sends them as data.
 // These cues tell us a slot panel should be fetched (over REST) and shown.
 const BOOKING_RE =
-  /slot selection panel|slots? available|available slots?|pick a (?:time |demo )?slot|choose a (?:time |demo )?slot|here are (?:our |the )?(?:available )?(?:demo )?slots/i
+  /slot selection panel|slots? available|available slots?|pick a (?:time |demo )?slot|choose a (?:time |demo )?slot|here are (?:our |the )?(?:available )?(?:demo )?slots|book(?: a)?(?: free)? demo|schedule(?: a)? demo|demo (?:booking|appointment)|available (?:times|time slots?)|pick a time that works/i
+
+function hasBookingIntent(text) {
+  return BOOKING_RE.test((text || "").toLowerCase())
+}
 
 export function useVoiceChat({
   onAssistantText,
@@ -98,7 +102,10 @@ export function useVoiceChat({
   const turnActiveRef = useRef(false) // a turn is in progress
   const tickRef = useRef(null) // pending requestAnimationFrame id
   const loopRef = useRef(null) // the per-frame reveal callback
-  const bookingSignaledRef = useRef(false) // booking-intent fired this turn
+  const bookingSignaledRef = useRef(false) // booking-intent queued this turn
+  const bookingPendingRef = useRef(false) // show slots after turn fully completes
+  const fallbackUserQuestionRef = useRef("") // best-effort mic transcript
+  const userQuestionShownRef = useRef(false)
 
   const cbRef = useRef({
     onAssistantText,
@@ -126,6 +133,12 @@ export function useVoiceChat({
     turnEndingRef.current = false
     turnActiveRef.current = false
     bookingSignaledRef.current = false
+    bookingPendingRef.current = false
+    // NOTE: fallbackUserQuestionRef / userQuestionShownRef are intentionally
+    // NOT cleared here. The user's transcript arrives *before* the assistant
+    // turn starts (which calls resetTurn); clearing it here wiped it before
+    // it could be shown — so the booking flow never showed the question.
+    // They are reset per user utterance and at turn-complete instead.
   }, [])
 
   // Reveal-loop: advance visible text in step with audio playback so the
@@ -165,7 +178,19 @@ export function useVoiceChat({
 
       if (turnEndingRef.current && audioDone && textDone) {
         if (full.length) cbRef.current.onAssistantText?.(full)
+        if (!userQuestionShownRef.current && fallbackUserQuestionRef.current) {
+          cbRef.current.onUserQuestion?.(fallbackUserQuestionRef.current)
+          userQuestionShownRef.current = true
+        }
         cbRef.current.onTurnComplete?.()
+        if (bookingPendingRef.current) {
+          bookingPendingRef.current = false
+          cbRef.current.onBookingIntent?.()
+        }
+        // Per-utterance state: cleared here (not in resetTurn) so the next
+        // thing the user says shows its own question bubble.
+        userQuestionShownRef.current = false
+        fallbackUserQuestionRef.current = ""
         tickRef.current = null
         turnActiveRef.current = false
         return
@@ -199,6 +224,8 @@ export function useVoiceChat({
     outCtxRef.current = null
     playheadRef.current = 0
     playingCountRef.current = 0
+    fallbackUserQuestionRef.current = ""
+    userQuestionShownRef.current = false
     resetTurn()
   }, [resetTurn])
 
@@ -316,27 +343,50 @@ export function useVoiceChat({
                 turnTextRef.current = joinText(turnTextRef.current, msg.content)
                 if (
                   !bookingSignaledRef.current &&
-                  BOOKING_RE.test(turnTextRef.current)
+                  hasBookingIntent(turnTextRef.current)
                 ) {
                   bookingSignaledRef.current = true
-                  cbRef.current.onBookingIntent?.()
+                  bookingPendingRef.current = true
                 }
               }
               break
-            case "input_transcript":
-              // Raw mic transcript is unreliable — the displayed question
-              // comes from the model's own query (tool_call) instead.
+            case "input_transcript": {
+              // Show the user's spoken question right away — before the
+              // assistant's reply bubble is created — so the thread reads
+              // user → assistant. This is the only user-question source for
+              // the demo-booking flow, which has no tool_call.
+              const q = msg.content ? String(msg.content).trim() : ""
+              if (q && !fallbackUserQuestionRef.current)
+                fallbackUserQuestionRef.current = q
+              if (q && !userQuestionShownRef.current) {
+                userQuestionShownRef.current = true
+                cbRef.current.onUserQuestion?.(q)
+              }
+              if (
+                !bookingSignaledRef.current &&
+                hasBookingIntent(msg.content)
+              ) {
+                bookingSignaledRef.current = true
+                bookingPendingRef.current = true
+              }
               break
+            }
             case "tool_call":
-              if (msg.query || msg.tool)
-                cbRef.current.onUserQuestion?.(msg.query || msg.tool)
+              // If the spoken transcript already produced the user bubble,
+              // don't add a second one for the model's paraphrased query.
+              if (!userQuestionShownRef.current) {
+                userQuestionShownRef.current = true
+                cbRef.current.onUserQuestion?.(
+                  msg.query || fallbackUserQuestionRef.current || msg.tool,
+                )
+              }
               cbRef.current.onToolCall?.(msg)
               if (
                 !bookingSignaledRef.current &&
-                /slot|demo|book/i.test(`${msg.tool || ""} ${msg.query || ""}`)
+                hasBookingIntent(`${msg.tool || ""} ${msg.query || ""}`)
               ) {
                 bookingSignaledRef.current = true
-                cbRef.current.onBookingIntent?.()
+                bookingPendingRef.current = true
               }
               break
             case "turn_complete":
