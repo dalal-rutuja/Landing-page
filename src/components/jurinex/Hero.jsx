@@ -5,10 +5,6 @@ export default function Hero() {
     <section className="hero">
       {/* <div className="hero-eyebrow">Built for Indian Legal Professionals &middot; Launching May 2026</div> */}
 
-      <div className="hero-logo-wrap">
-        <img src="/jurinex-logo.png" alt="JuriNex" className="hero-logo-small" />
-      </div>
-
       <h1 className="hero-headline">
         <span className="hero-headline-left hero-headline-nowrap">AI powered operating system</span>
         <em className="hero-headline-left">for Legal Professionals</em>

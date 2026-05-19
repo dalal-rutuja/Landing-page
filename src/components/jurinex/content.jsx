@@ -59,7 +59,6 @@ export const AUDIENCES = [
   { icon: "II", title: "Small Law Firms", desc: "2–15 lawyer practices needing shared vaults, multi-user access, and team collaboration." },
   { icon: "III", title: "Mid-Size Firms", desc: "15–50 lawyers needing granular permissions, white-label output, and practice analytics." },
   { icon: "IV", title: "Corporate Legal", desc: "In-house teams managing bulk contracts, compliance workflows, and matter tracking at scale." },
-  { icon: "V", title: "Senior Advocates", desc: "High Court and Supreme Court practitioners demanding citation accuracy and fast research." },
 ]
 
 export const WORKFLOW = [

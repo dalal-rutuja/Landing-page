@@ -6,9 +6,11 @@ export default function SiteFooter() {
       <div className="footer-inner">
         <div className="footer-top">
           <div className="footer-col">
-            <a href="#" className="logo">
-              <div className="logo-mark">JN</div>
-              <span>JuriNex</span>
+            <a href="#" className="logo" aria-label="JuriNex">
+              <img src="/jurinex-mark.png" alt="" className="logo-mark-img" />
+              <span className="brandmark">
+                Jurinex<sup>™</sup>
+              </span>
             </a>
             <p className="footer-brand-desc">
               AI-powered legal practice management, built for Indian courts. A product of

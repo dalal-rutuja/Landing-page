@@ -7,6 +7,7 @@
   --serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --logo: 'Montserrat', 'DM Sans', sans-serif;
   --container: 1200px;
 
   /* ---------- Mono color theme ---------- */
@@ -72,7 +73,14 @@
 .jx .logo {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
 }
+.jx .logo-mark-img {
+  height: clamp(26px, 2.5vw, 32px);
+  width: auto;
+  display: block;
+}
+.jx footer .logo-mark-img { height: 26px; }
 .jx .nav-logo-img {
   width: clamp(108px, 10vw, 145px);
   height: auto;
@@ -80,6 +88,25 @@
   /* Match logo tone to primary button color */
   filter: grayscale(1) saturate(0) contrast(1.08) brightness(0.36);
 }
+/* Text wordmark — Montserrat ExtraBold, all-caps, wide tracking */
+.jx .brandmark {
+  font-family: var(--logo);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink);
+  line-height: 1;
+  font-size: clamp(15px, 1.6vw, 20px);
+  white-space: nowrap;
+}
+.jx .brandmark sup {
+  font-size: 0.4em;
+  font-weight: 700;
+  letter-spacing: 0;
+  vertical-align: top;
+  margin-left: 2px;
+}
+.jx footer .brandmark { font-size: 17px; }
 .jx .nav-links {
   display: flex; gap: 32px;
   font-size: 14.5px;
@@ -358,7 +385,7 @@
 /* ------------------ WHO IS IT FOR ------------------ */
 .jx .audience-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
   border: 1px solid var(--border);
   border-radius: 14px;

@@ -8,12 +8,6 @@ export default function WorkflowSection() {
         <h2 className="section-title">
           Five moments of value in <em>every case</em>.
         </h2>
-        <p className="section-lead">
-          JuriNex isn't eleven scattered features. It's one connected workflow &mdash; capture,
-          converse, draft, verify &mdash; that handles the mechanical work so you can focus on
-          strategy.
-        </p>
-
         <div className="workflow-grid">
           {WORKFLOW.map((w) => (
             <div className="workflow-card" key={w.step}>
