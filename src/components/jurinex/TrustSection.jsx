@@ -8,10 +8,10 @@ export default function TrustSection() {
         <h2 className="section-title">
           Built for Indian courts. 
         </h2>
-        <p className="section-lead">
+        {/* <p className="section-lead">
           Most legal AI was designed for American and European law firms, then translated.
           JuriNex was designed for the High Court of Bombay from day one &mdash; and it shows.
-        </p>
+        </p> */}
 
         <div className="trust-grid">
           {TRUST.map((t) => (

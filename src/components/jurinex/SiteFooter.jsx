@@ -1,4 +1,5 @@
 import SocialStrip from "./SocialStrip"
+import gravalIcon from "../../assets/graval.png"
 
 export default function SiteFooter() {
   return (
@@ -7,14 +8,17 @@ export default function SiteFooter() {
         <div className="footer-top">
           <div className="footer-col">
             <a href="#" className="logo" aria-label="JuriNex">
-              <img src="/jurinex-mark.png" alt="" className="logo-mark-img" />
+              <img src={gravalIcon} alt="" className="logo-mark-img" />
               <span className="brandmark">
                 Jurinex<sup>™</sup>
               </span>
             </a>
             <p className="footer-brand-desc">
-              AI-powered legal practice management, built for Indian courts. A product of
-              NexIntel AI Pvt Ltd.
+              Enterprise grade legal operating system
+              <br />
+              for Professionals
+              <br />
+              for powered by AI
             </p>
             <div className="footer-address">
               <div className="footer-address-line"><strong>NexIntel AI Pvt Ltd</strong></div>
@@ -23,7 +27,7 @@ export default function SiteFooter() {
                 Chhatrapati Sambhajinagar, Maharashtra 431010
               </div>
               <a href="mailto:hello@jurinex.ai" className="footer-address-email">
-                hello@jurinex.ai
+                connect@jurinex.ai
               </a>
             </div>
             <SocialStrip label="Follow" />
@@ -34,7 +38,9 @@ export default function SiteFooter() {
             <ul>
               <li><a href="#product">Features</a></li>
               <li><a href="#pricing">Pricing</a></li>
-              <li><a href="#demo">Request Demo</a></li>
+              <li>
+                <a href="mailto:connect@jurinex.ai?subject=Demo%20request">Request Demo</a>
+              </li>
               <li><a href="#login">Login</a></li>
             </ul>
           </div>
@@ -83,7 +89,7 @@ export default function SiteFooter() {
           <div>
             &copy; 2026 NexIntel AI Pvt Ltd. Incorporated under the Companies Act, 2013.
           </div>
-          <div>Built in Chhatrapati Sambhajinagar &middot; Made for Indian courts</div>
+         
         </div>
       </div>
     </footer>

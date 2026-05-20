@@ -9,9 +9,9 @@ import WorkflowSection from "../components/jurinex/WorkflowSection"
 import TrustSection from "../components/jurinex/TrustSection"
 import HowSection from "../components/jurinex/HowSection"
 import PricingSection from "../components/jurinex/PricingSection"
+import TestimonialsSection from "../components/jurinex/TestimonialsSection"
 import TeamSection from "../components/jurinex/TeamSection"
 import MentorSection from "../components/jurinex/MentorSection"
-import FinalCTASection from "../components/jurinex/FinalCTASection"
 import SiteFooter from "../components/jurinex/SiteFooter"
 import Chatbot from "../components/jurinex/chatbot/Chatbot"
 
@@ -26,9 +26,9 @@ export default function JuriNexLanding() {
       <TrustSection />
       <HowSection />
       <PricingSection />
+      <TestimonialsSection />
       <TeamSection />
       <MentorSection />
-      <FinalCTASection />
       <SiteFooter />
       <Chatbot />
     </div>

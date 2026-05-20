@@ -10,9 +10,8 @@ export default function MentorSection() {
           <div className="mentor-content">
             <div className="mentor-eyebrow">Mentor &amp; Advisor</div>
             <div className="mentor-quote">
-              &ldquo;Absolute to us means free from imperfection, free from doubt &mdash;
-              science prevails always. Guided by our core values and a 'CAN AND WILL' attitude,
-              we look forward to creating a lasting impact.&rdquo;
+              &ldquo;Absolute to us means free from imperfection, free from doubt  &mdash;
+              and where science prevails, always. Guided by our core quality policy of 100 - 1=ZERO, we look forward to creating a lasting impact in all our endeavours.&rdquo;
             </div>
             <div className="mentor-attribution">
               <strong>Milind Kelkar</strong>

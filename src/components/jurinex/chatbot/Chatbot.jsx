@@ -357,7 +357,7 @@ export default function Chatbot() {
   }
 
   return (
-    <div className="jx-chat" role="dialog" aria-label="JuriNex AI Legal Assistant">
+    <div className="jx-chat" role="dialog" aria-label="JuriNex Customer Support">
       <header className="jx-chat-head">
         <div className="jx-chat-head-top">
           <div className="jx-chat-id">
@@ -366,13 +366,11 @@ export default function Chatbot() {
             </span>
             <div className="jx-chat-id-text">
               <div className="jx-chat-title">
-                JuriNex <sup>™</sup> <span>AI Legal Assistant</span>
+                JuriNex <sup>™</sup> <span>Customer Support</span>
               </div>
               <div className="jx-chat-status">
                 <span className="jx-dot" />
-                {voiceLabel
-                  ? voiceLabel
-                  : "Online · Powered by Gemini AI"}
+                {voiceLabel ? voiceLabel : "Online"}
               </div>
             </div>
           </div>
@@ -385,15 +383,6 @@ export default function Chatbot() {
             <IconClose width="18" height="18" />
           </button>
         </div>
-        <button
-          type="button"
-          className="jx-chat-demo"
-          onClick={openDemoSlots}
-          disabled={sending}
-        >
-          <IconCalendar width="17" height="17" />
-          Book a Free Demo
-        </button>
       </header>
 
       <div className="jx-chat-body" ref={scrollRef}>

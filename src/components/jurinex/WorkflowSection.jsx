@@ -4,9 +4,9 @@ export default function WorkflowSection() {
   return (
     <section id="product" className="workflow-section">
       <div className="container">
-        <div className="section-eyebrow">The JuriNex workflow</div>
+        {/* <div className="section-eyebrow">The JuriNex workflow</div> */}
         <h2 className="section-title">
-          Five moments of value in <em>every case</em>.
+          JuriNex workflow 
         </h2>
         <div className="workflow-grid">
           {WORKFLOW.map((w) => (

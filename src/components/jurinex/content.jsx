@@ -31,6 +31,55 @@ export const SIDEBAR_ICONS = {
       <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z" />
     </svg>
   ),
+  newcase: (
+    <svg className="preview-sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="4" y="3" width="16" height="18" rx="2" />
+      <path d="M12 8v8M8 12h8" />
+    </svg>
+  ),
+  storage: (
+    <svg className="preview-sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+  ),
+  profile: (
+    <svg className="preview-sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21c0-4 4-7 8-7s8 3 8 7" />
+    </svg>
+  ),
+  billing: (
+    <svg className="preview-sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="3" y="6" width="18" height="13" rx="2" />
+      <path d="M3 10h18" />
+    </svg>
+  ),
+  settings: (
+    <svg className="preview-sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" />
+    </svg>
+  ),
+  support: (
+    <svg className="preview-sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3" />
+      <line x1="12" y1="17" x2="12.01" y2="17" />
+    </svg>
+  ),
+  help: (
+    <svg className="preview-sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 16v-4M12 8h.01" />
+    </svg>
+  ),
+  logout: (
+    <svg className="preview-sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+      <polyline points="16 17 21 12 16 7" />
+      <line x1="21" y1="12" x2="9" y2="12" />
+    </svg>
+  ),
 }
 
 export const SIDEBAR_ITEMS = [
@@ -41,14 +90,99 @@ export const SIDEBAR_ITEMS = [
   { key: "draft", label: "AI Drafting" },
 ]
 
+// Expanded sidebar (top group) used by slides 2 & 3
+export const SIDEBAR_ITEMS_FULL_TOP = [
+  { key: "dashboard", label: "Dashboard" },
+  { key: "newcase", label: "Create New Case" },
+  { key: "storage", label: "Case Storage" },
+  { key: "chat", label: "Chat" },
+  { key: "draft", label: "AI Drafting" },
+]
+
+export const SIDEBAR_ITEMS_FULL_BOTTOM = [
+  { key: "profile", label: "Profile" },
+  { key: "billing", label: "Billing" },
+  { key: "settings", label: "Settings" },
+  { key: "support", label: "Get Support" },
+  { key: "help", label: "Help" },
+  { key: "logout", label: "Logout" },
+]
+
 export const CASES = [
-  { title: "Kisan S/o Bansi Salampure Vs Union of India", no: "11296 OF 2019", court: "HC Bombay – Aurangabad" },
-  { title: "Rahul Bhikulal Kasat Vs State of Maharashtra", no: "Test 001", court: "Supreme Court – Criminal" },
-  { title: "M/s. K.S. Tondare Tours and Travels", no: "28045 OF 2024", court: "HC Bombay – Aurangabad" },
+  { title: "Ramesh Patel Vs Union of India", no: "11296 OF 2019", court: "HC Bombay – Aurangabad" },
+  { title: "Anil Kumar Sharma Vs State of Maharashtra", no: "Test 001", court: "Supreme Court – Criminal" },
+  { title: "M/s. Premier Tours and Travels", no: "28045 OF 2024", court: "HC Bombay – Aurangabad" },
+]
+
+// Slide 2 / 3 single demo case row (dummy)
+export const DEMO_CASE_DETAIL = {
+  title: "Aditya Industries Pvt Ltd Vs Sanjay Sharma",
+  no: "OF 2025",
+  court: "High Court of Bombay - Aurangabad",
+  type: "WRIT JURISDICTION / Writ Petition (Civil)",
+  advocate: "Unassigned",
+  hearing: "Never",
+  status: "Active",
+  docs: 1,
+  updated: "06-05-2026",
+}
+
+// Slide 3 — stat cards
+export const BRIEF_STATS = [
+  { label: "Total Active Cases", value: "1" },
+  { label: "Cases Pending Review", value: "0" },
+  { label: "Upcoming Hearings (Next 7 Days)", value: "0" },
+  { label: "Documents Uploaded This Month", value: "1" },
+  { label: "Today's Hearings", value: "0" },
+]
+
+// Slide 2 — quick action chips below the table
+export const QUICK_ACTIONS = [
+  "Case Summary",
+  "List of Dates & Events",
+  "Case Gist",
+  "Grounds",
+  "Basic Drafting assistant",
+  "Hearing Preparation",
+  "Generate a Brief",
+  "Client Brief",
+  "Statute & Section Finder",
+]
+
+// Case Storage slide — folder card data (dummy)
+export const STORAGE_FOLDERS = [
+  { title: "Aditya Industries Pvt Ltd Vs Sanjay Sh…", meta: "1 item · 05/06/2026", status: "ACTIVE" },
+]
+
+// Chat slide — chronological timeline rows (dummy)
+export const CHAT_TIMELINE = [
+  { sno: "1.", date: "2021 [Year only]", nature: "Legal/Procedural", parties: "Plaintiff (as Plaintiff)", place: "District Court, Pune", conf: "[HC]" },
+  { sno: "2.", date: "2024 [Year only]", nature: "Legal/Procedural", parties: "Aditya Industries Ltd (Plaintiff)", place: "Commercial Court, Latur", conf: "[HC]" },
+  { sno: "3.", date: "Before 28-Jan-2025", nature: "Legal/Procedural", parties: "Aditya Industries Ltd (Defendant)", place: "District Court, Pune", conf: "[MC]" },
+  { sno: "4.", date: "Before 12-Feb-2025", nature: "Legal/Procedural", parties: "Sanjay Sharma (Defendant)", place: "Commercial Court, Latur", conf: "[MC]" },
+]
+
+// AI Drafting slide — template tiles + draft cards (dummy)
+export const DRAFT_TEMPLATES = [
+  { title: "Custom template", custom: true },
+  { title: "Lease Deed" },
+  { title: "Partition Deed" },
+  { title: "Non Compete" },
+  { title: "Writ – Certiorari" },
+  { title: "NDA" },
+  { title: "Mortgage Deed" },
+]
+
+export const RECENT_DRAFTS = [
+  { title: "Recovery of Money – Sahyad…", date: "Apr 24, 2026" },
+  { title: "Recovery of Money – Legal_…", date: "Apr 24, 2026" },
+  { title: "Suit for partition (By Will)", date: "Apr 21, 2026" },
+  { title: "Lease Deed – Supporting_1", date: "Apr 20, 2026" },
+  { title: "Lease Deed – Lease Deed", date: "Apr 20, 2026" },
 ]
 
 export const STRIP_STATS = [
-  { num: "20,000+", label: "Pages Processed" },
+  { num: "5,00,000+", label: "Pages Processed" },
   // { num: "7,000+", label: "AI Requests Processed" },
   { num: "95%", label: "Accuracy" },
   { num: "100%", label: "Data Residency in India" },
@@ -58,11 +192,11 @@ export const AUDIENCES = [
   { icon: "I", title: "Solo Practitioners", desc: "District court advocates and individual consultants handling their own drafting, research, and case files." },
   { icon: "II", title: "Small Law Firms", desc: "2–15 lawyer practices needing shared vaults, multi-user access, and team collaboration." },
   { icon: "III", title: "Mid-Size Firms", desc: "15–50 lawyers needing granular permissions, white-label output, and practice analytics." },
-  { icon: "IV", title: "Corporate Legal", desc: "In-house teams managing bulk contracts, compliance workflows, and matter tracking at scale." },
+  { icon: "IV", title: "Enterprise Legal", desc: "In-house teams managing bulk contracts, compliance workflows, and matter tracking at scale." },
 ]
 
 export const WORKFLOW = [
-  { step: "01 · UNDERSTAND", title: "Upload anything.", desc: "Scanned FIRs, bulky case files, judgments, affidavits. OCR extracts the text, RAG indexes it for semantic search, chronology builds automatically.", meta: "Up to 1,050 pages · 50MB per file" },
+  { step: "01 · UNDERSTAND", title: "Upload case documents.", desc: "Scanned FIRs, bulky case files, judgments, affidavits. OCR extracts the text, RAG indexes it for semantic search, chronology builds automatically.", meta: "Up to 1,050 pages · 50MB per file" },
   { step: "02 · CONVERSE & SUMMARIZE", title: "Ask your case anything.", desc: "Natural language queries across every document in a case folder. Find prior statements, cross-reference dates, locate key testimony in seconds.", meta: "8 preset prompts · Custom queries" },
   { step: "03 · DRAFT", title: "Generate court-ready documents.", desc: "Bail applications, petitions, writs, agreements. Upload your own templates or use our library. Formatted for the bench you're filing in.", meta: "9-agent drafting pipeline" },
   { step: "04 · RESEARCH & CITATION", title: "Every citation, verified and reference displayed.", desc: "AIR-format citations verified against source databases. Zero-hallucination policy — if the system isn't confident, it flags rather than invents.", meta: "100% verification target" },
@@ -74,8 +208,6 @@ export const TRUST = [
   { icon: "§", title: "Indian court hierarchy, built in.", desc: (<>Supreme Court, High Courts, District Courts, and Tribunals are <strong>first-class citizens</strong> in our case classification — not afterthoughts.</>) },
   { icon: "✓", title: "Zero hallucination policy.", desc: (<>AI output that fails citation verification gets flagged, not published. <strong>Three or more triggers halt a response.</strong> No exceptions.</>) },
   { icon: "🇮🇳", title: "Your data stays in India.", desc: (<>All infrastructure runs in GCP Mumbai (asia-south1). <strong>DPDPA 2023 compliant.</strong> No cross-border transfer. Ever.</>) },
-  { icon: "₹", title: "UPI-first billing.", desc: (<>Pay by UPI, card, or net banking via Razorpay. <strong>GST-compliant invoices</strong> auto-generated. No international credit card required.</>) },
-  { icon: "A", title: "AIR-format citations.", desc: (<>All India Reporter format, validated against source databases. Your court filings look the way your bench expects — <strong>not like a US brief.</strong></>) },
 ]
 
 export const HOW = [
@@ -84,57 +216,81 @@ export const HOW = [
   { num: "III.", title: "Chat, draft, cite, edit, collaborate", desc: "Ask questions. Generate drafts. Verify citations. Share with your team. The work that took two hours now takes minutes." },
 ]
 
+const PRICING_FEATURES = [
+  "Chat & Assistance",
+  "Case Management",
+  "Document Vault",
+  "AI Drafting",
+  "Citation",
+  "Branding & Output",
+  "Multi Languages",
+  "Role based User management",
+  "DPDPA compliant",
+  "In-app ticket system",
+]
+
 export const PRICING = [
   {
-    tier: "Basic",
-    original: "₹2,499",
-    now: "₹1,499",
+    tier: "Solo lawyer",
+    now: "₹5,999",
     period: "per month · billed monthly",
-    features: [
-      "Desktop Chat with document upload",
-      "Case folder with OCR + RAG",
-      "Vault storage with search",
-      "Basic drafting templates",
-      "English + Hindi + Marathi",
-      "Up to 1 user",
-    ],
+    features: PRICING_FEATURES,
     cta: "Start Free Trial",
     ctaClass: "btn-ghost",
   },
   {
-    tier: "Professional",
-    original: "₹4,999",
-    now: "₹3,999",
+    tier: "Law firm",
+    now: "₹9,999",
     period: "per month · billed monthly",
-    highlight: true,
-    badge: "Most Popular",
-    features: [
-      "Everything in Basic",
-      "9-agent AI Drafting pipeline",
-      "Premium drafting templates",
-      "Citation verification (AIR format)",
-      "Teams with RBAC — up to 5 users",
-      "Custom branding on outputs",
-      "Priority support",
-    ],
+    features: PRICING_FEATURES,
     cta: "Start Free Trial",
-    ctaClass: "btn-primary",
+    ctaClass: "btn-ghost",
   },
   {
     tier: "Enterprise",
-    now: "Custom",
+    now: "Enterprise",
     period: "tailored to your firm",
-    features: [
-      "Everything in Professional",
-      "Unlimited users",
-      "SSO + audit trails",
-      "White-label outputs",
-      "Dedicated success manager",
-      "Custom AI model routing",
-      "On-premise options",
-    ],
+    features: PRICING_FEATURES,
     cta: "Talk to Sales",
     ctaClass: "btn-ghost",
+  },
+]
+
+export const TESTIMONIALS = [
+  {
+    quote:
+      "What used to take my junior an entire afternoon — pulling chronology, marking exhibits, drafting the bail application — now lands in front of me in under twenty minutes. JuriNex hasn't replaced the work, it's compressed it.",
+    name: "Adv. Rohan Deshmukh",
+    role: "Criminal Side · Bombay High Court",
+    initial: "R",
+  },
+  {
+    quote:
+      "The Marathi OCR alone was worth the subscription. We finally have a tool that reads our District Court filings without us re-typing the entire record.",
+    name: "Adv. Priya Joshi",
+    role: "Partner · Joshi & Associates, Pune",
+    initial: "P",
+  },
+  {
+    quote:
+      "Citation verification is the part I trust the most. If the system isn't certain, it tells me — and that's exactly the discipline I want from a tool I'm putting in front of the bench.",
+    name: "Adv. Karan Mehta",
+    role: "Counsel · Commercial Disputes, Delhi",
+    initial: "K",
+  },
+  {
+    quote:
+      "Onboarding our 12-lawyer team took an afternoon. The role-based vault and shared case folders mean we've stopped emailing PDFs to each other — everything lives in one searchable place.",
+    name: "Adv. Neha Iyer",
+    role: "Managing Partner · Iyer Legal, Bengaluru",
+    initial: "N",
+  },
+  {
+    quote:
+      "I draft writ petitions for the Aurangabad bench every week. JuriNex understands the formatting, the citation style, and the local idiom — it doesn't try to make my filing sound like it's from New York.",
+    name: "Adv. Vikram Patil",
+    role: "Writ Side · HC Bombay, Aurangabad",
+    initial: "V",
   },
 ]
 

@@ -37,9 +37,9 @@ export default {
         },
       },
       fontFamily: {
-        // Map "playfair" to DM Sans so the whole website uses one font.
-        playfair: ['"DM Sans"', "system-ui", "sans-serif"],
-        dmSans: ['"DM Sans"', "system-ui", "sans-serif"],
+        // Map utility families to Roboto for consistent typography.
+        playfair: ['"Roboto"', "system-ui", "sans-serif"],
+        dmSans: ['"Roboto"', "system-ui", "sans-serif"],
       },
       keyframes: {
         "mesh-shift": {
