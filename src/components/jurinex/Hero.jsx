@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import {
   SIDEBAR_ITEMS_FULL_TOP,
   SIDEBAR_ITEMS_FULL_BOTTOM,
@@ -20,29 +20,70 @@ const SLIDES = [
   { url: "jurinex.ai/#/ai-drafting", Component: SlideAIDrafting },
 ]
 const SLIDE_INTERVAL_MS = 3200
+const HERO_TRANSITION_MS = 700
 
 export default function Hero() {
-  const [slide, setSlide] = useState(0)
+  const [slide, setSlide] = useState(1)
   const [paused, setPaused] = useState(false)
+  const [animate, setAnimate] = useState(true)
+
+  const slidesLoop = useMemo(() => {
+    const first = SLIDES[0]
+    const last = SLIDES[SLIDES.length - 1]
+    return [last, ...SLIDES, first]
+  }, [])
+
+  const realSlide = ((slide - 1 + SLIDES.length) % SLIDES.length + SLIDES.length) % SLIDES.length
 
   useEffect(() => {
     if (paused) return
-    const id = setInterval(() => setSlide((s) => (s + 1) % SLIDES.length), SLIDE_INTERVAL_MS)
+    const id = setInterval(() => {
+      setAnimate(true)
+      setSlide((s) => s + 1)
+    }, SLIDE_INTERVAL_MS)
     return () => clearInterval(id)
   }, [paused])
+
+  const goNext = () => {
+    setAnimate(true)
+    setSlide((s) => s + 1)
+  }
+
+  const goPrev = () => {
+    setAnimate(true)
+    setSlide((s) => s - 1)
+  }
+
+  const handleTrackTransitionEnd = () => {
+    if (slide === SLIDES.length + 1) {
+      setAnimate(false)
+      setSlide(1)
+      return
+    }
+    if (slide === 0) {
+      setAnimate(false)
+      setSlide(SLIDES.length)
+    }
+  }
+
+  useEffect(() => {
+    if (!animate) {
+      const id = requestAnimationFrame(() => setAnimate(true))
+      return () => cancelAnimationFrame(id)
+    }
+  }, [animate])
 
   return (
     <section className="hero">
       <h1 className="hero-headline">
         <span className="hero-headline-left hero-headline-nowrap">Enterprise grade legal operating system</span>
         <em className="hero-headline-left">for  Professionals</em>
-        <em className="hero-headline-left">for powered by AI</em>
+        <em className="hero-headline-left">powered by AI</em>
       </h1>
 
       <p className="hero-sub">
-        Work faster, practice smarter with the power of AI. JuriNex automates document
-        processing, case research, and legal drafting &mdash; purpose-built for Indian courts,
-        in Multilingual .
+        &ldquo;Work faster, practice smarter with the power of AI. JuriNex handles your research, drafting, and case
+        files &mdash; purpose-built for Indian courts, supports Indian languages.&rdquo;
       </p>
 
       <div className="hero-cta">
@@ -63,12 +104,19 @@ export default function Hero() {
           <div className="chrome-dot" />
           <div className="chrome-dot" />
           <div className="chrome-dot" />
-          <div className="chrome-url">{SLIDES[slide].url}</div>
+          <div className="chrome-url">{SLIDES[realSlide].url}</div>
         </div>
 
         <div className="hero-slider">
-          <div className="hero-slider-track" style={{ transform: `translateX(-${slide * 100}%)` }}>
-            {SLIDES.map(({ Component }, i) => (
+          <div
+            className="hero-slider-track"
+            style={{
+              transform: `translateX(-${slide * 100}%)`,
+              transitionDuration: animate ? `${HERO_TRANSITION_MS}ms` : "0ms",
+            }}
+            onTransitionEnd={handleTrackTransitionEnd}
+          >
+            {slidesLoop.map(({ Component }, i) => (
               <div className="hero-slide" key={i}><Component /></div>
             ))}
           </div>
@@ -77,7 +125,7 @@ export default function Hero() {
             type="button"
             className="hero-slider-arrow hero-slider-arrow--prev"
             aria-label="Previous slide"
-            onClick={() => setSlide((s) => (s - 1 + SLIDES.length) % SLIDES.length)}
+            onClick={goPrev}
           >
             ‹
           </button>
@@ -85,7 +133,7 @@ export default function Hero() {
             type="button"
             className="hero-slider-arrow hero-slider-arrow--next"
             aria-label="Next slide"
-            onClick={() => setSlide((s) => (s + 1) % SLIDES.length)}
+            onClick={goNext}
           >
             ›
           </button>
@@ -97,10 +145,13 @@ export default function Hero() {
               key={i}
               type="button"
               role="tab"
-              aria-selected={slide === i}
+              aria-selected={realSlide === i}
               aria-label={`Show slide ${i + 1}`}
-              className={`hero-slider-dot${slide === i ? " active" : ""}`}
-              onClick={() => setSlide(i)}
+              className={`hero-slider-dot${realSlide === i ? " active" : ""}`}
+              onClick={() => {
+                setAnimate(true)
+                setSlide(i + 1)
+              }}
             />
           ))}
         </div>

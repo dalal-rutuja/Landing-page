@@ -1,30 +1,57 @@
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { TESTIMONIALS } from "./content"
 
 const AUTO_SCROLL_MS = 4500
+const TRANSITION_MS = 650
 
 export default function TestimonialsSection() {
-  const trackRef = useRef(null)
   const [paused, setPaused] = useState(false)
+  const [index, setIndex] = useState(1)
+  const [animate, setAnimate] = useState(true)
 
-  const scrollByCard = useCallback((dir) => {
-    const track = trackRef.current
-    if (!track) return
-    const card = track.querySelector(".testimonial-card")
-    if (!card) return
-    const step = card.getBoundingClientRect().width + 22 // card + gap
-    const max = track.scrollWidth - track.clientWidth
-    let next = track.scrollLeft + dir * step
-    if (dir > 0 && next > max - 4) next = 0
-    else if (dir < 0 && next < 4) next = max
-    track.scrollTo({ left: next, behavior: "smooth" })
+  const slides = useMemo(() => {
+    if (!TESTIMONIALS.length) return []
+    const first = TESTIMONIALS[0]
+    const last = TESTIMONIALS[TESTIMONIALS.length - 1]
+    return [last, ...TESTIMONIALS, first]
   }, [])
 
+  const showCount = TESTIMONIALS.length
+
+  const goToNext = () => {
+    setAnimate(true)
+    setIndex((prev) => prev + 1)
+  }
+
+  const goToPrev = () => {
+    setAnimate(true)
+    setIndex((prev) => prev - 1)
+  }
+
   useEffect(() => {
-    if (paused) return
-    const id = setInterval(() => scrollByCard(1), AUTO_SCROLL_MS)
+    if (paused || showCount <= 1) return
+    const id = setInterval(() => goToNext(), AUTO_SCROLL_MS)
     return () => clearInterval(id)
-  }, [paused, scrollByCard])
+  }, [paused, showCount])
+
+  const handleTransitionEnd = () => {
+    if (index === showCount + 1) {
+      setAnimate(false)
+      setIndex(1)
+      return
+    }
+    if (index === 0) {
+      setAnimate(false)
+      setIndex(showCount)
+    }
+  }
+
+  useEffect(() => {
+    if (!animate) {
+      const id = requestAnimationFrame(() => setAnimate(true))
+      return () => cancelAnimationFrame(id)
+    }
+  }, [animate])
 
   return (
     <section id="testimonials" className="testimonials-section">
@@ -46,7 +73,7 @@ export default function TestimonialsSection() {
           <button
             type="button"
             className="testimonials-arrow testimonials-arrow-prev"
-            onClick={() => scrollByCard(-1)}
+            onClick={goToPrev}
             aria-label="Previous testimonial"
           >
             <svg
@@ -68,26 +95,35 @@ export default function TestimonialsSection() {
             </svg>
           </button>
 
-          <div className="testimonials-track" ref={trackRef}>
-            {TESTIMONIALS.map((t) => (
-              <figure className="testimonial-card" key={t.name}>
-                <div className="testimonial-mark" aria-hidden="true">&ldquo;</div>
-                <blockquote className="testimonial-quote">{t.quote}</blockquote>
-                <figcaption className="testimonial-meta">
-                  <span className="testimonial-avatar">{t.initial}</span>
-                  <span className="testimonial-meta-text">
-                    <span className="testimonial-name">{t.name}</span>
-                    <span className="testimonial-role">{t.role}</span>
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
+          <div className="testimonials-track">
+            <div
+              className="testimonials-track-inner"
+              style={{
+                transform: `translateX(-${index * 100}%)`,
+                transitionDuration: animate ? `${TRANSITION_MS}ms` : "0ms",
+              }}
+              onTransitionEnd={handleTransitionEnd}
+            >
+              {slides.map((t, idx) => (
+                <figure className="testimonial-card" key={`${t.name}-${idx}`}>
+                  <div className="testimonial-photo" aria-hidden="true">
+                    {t.photo && <img src={t.photo} alt={t.name} />}
+                  </div>
+                  <div className="testimonial-body">
+                    <blockquote className="testimonial-quote">{t.quote}</blockquote>
+                    <figcaption className="testimonial-attribution">
+                      {t.attribution}
+                    </figcaption>
+                  </div>
+                </figure>
+              ))}
+            </div>
           </div>
 
           <button
             type="button"
             className="testimonials-arrow testimonials-arrow-next"
-            onClick={() => scrollByCard(1)}
+            onClick={goToNext}
             aria-label="Next testimonial"
           >
             <svg

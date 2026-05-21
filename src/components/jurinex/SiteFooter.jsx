@@ -1,6 +1,17 @@
 import SocialStrip from "./SocialStrip"
 import gravalIcon from "../../assets/graval.png"
 
+const LEGAL_LINKS = [
+  { label: "Terms and Services", href: "https://drive.google.com/open?id=1BTXf-YUiOjQiJmdwM9QS0GCgbGUXRBOO&usp=drive_copy" },
+  { label: "Master Service Agreement", href: "https://drive.google.com/open?id=1iUYu1fDiqp95_GV16G8w_Su-EIgBg4aT&usp=drive_copy" },
+  { label: "DPA", href: "https://drive.google.com/open?id=1MEYVdK5NtlqkhlhPrCi_q4o6zCvsyBTP&usp=drive_copy" },
+  { label: "Privacy Policy", href: "https://drive.google.com/open?id=10RKK0Eh7ybm0mRNpbsDx4ecMs5ymedWa&usp=drive_copy" },
+  { label: "Data Security Policy", href: "https://drive.google.com/open?id=1X0qE1gpz-oVfy9qfL7UdIhcoLezhIEeZ&usp=drive_copy" },
+  { label: "Disclosures", href: "https://drive.google.com/open?id=11oc-dhaFbjhPtraRuYucjfOtnE5WqQj4&usp=drive_copy" },
+  { label: "Cookie Policy", href: "https://drive.google.com/open?id=1iKeGRa0w86ERuGJLYRSaAFnw7H1fYeNS&usp=drive_copy" },
+  { label: "Refund Policy", href: "https://drive.google.com/open?id=1ryZoxjk55ESOU4QaSximCarJe2236DAC&usp=drive_copy" },
+]
+
 export default function SiteFooter() {
   return (
     <footer>
@@ -58,10 +69,13 @@ export default function SiteFooter() {
           <div className="footer-col">
             <div className="footer-col-title">Legal</div>
             <ul>
-              <li><a href="#privacy">Privacy Policy</a></li>
-              <li><a href="#terms">Terms of Service</a></li>
-              <li><a href="#dpdpa">DPDPA Compliance</a></li>
-              <li><a href="#security">Security</a></li>
+              {LEGAL_LINKS.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} target="_blank" rel="noopener noreferrer">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

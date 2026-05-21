@@ -189,31 +189,31 @@ export const STRIP_STATS = [
 ]
 
 export const AUDIENCES = [
-  { icon: "I", title: "Solo Practitioners", desc: "District court advocates and individual consultants handling their own drafting, research, and case files." },
-  { icon: "II", title: "Small Law Firms", desc: "2–15 lawyer practices needing shared vaults, multi-user access, and team collaboration." },
-  { icon: "III", title: "Mid-Size Firms", desc: "15–50 lawyers needing granular permissions, white-label output, and practice analytics." },
+  { icon: "I", title: "Solo Practitioners", desc: "Court advocates and individual consultants handling their own drafting, research, and case files." },
+  { icon: "II", title: "Small Law Firms", desc: "3–10 lawyer practices needing shared vaults, multi-user access, and team collaboration." },
+  { icon: "III", title: "Mid-Size Firms", desc: "11–50 lawyers needing granular permissions, white-label output." },
   { icon: "IV", title: "Enterprise Legal", desc: "In-house teams managing bulk contracts, compliance workflows, and matter tracking at scale." },
 ]
 
 export const WORKFLOW = [
   { step: "01 · UNDERSTAND", title: "Upload case documents.", desc: "Scanned FIRs, bulky case files, judgments, affidavits. OCR extracts the text, RAG indexes it for semantic search, chronology builds automatically.", meta: "Up to 1,050 pages · 50MB per file" },
-  { step: "02 · CONVERSE & SUMMARIZE", title: "Ask your case anything.", desc: "Natural language queries across every document in a case folder. Find prior statements, cross-reference dates, locate key testimony in seconds.", meta: "8 preset prompts · Custom queries" },
-  { step: "03 · DRAFT", title: "Generate court-ready documents.", desc: "Bail applications, petitions, writs, agreements. Upload your own templates or use our library. Formatted for the bench you're filing in.", meta: "9-agent drafting pipeline" },
-  { step: "04 · RESEARCH & CITATION", title: "Every citation, verified and reference displayed.", desc: "AIR-format citations verified against source databases. Zero-hallucination policy — if the system isn't confident, it flags rather than invents.", meta: "100% verification target" },
+  { step: "02 · CONVERSE & SUMMARIZE", title: "Ask anything about the case", desc: "Ask questions in plain English across an entire case folder. Surface prior statements, cross-reference dates, and pull key testimony in seconds.", meta: "8 preset prompts · Custom queries · All answered" },
+  { step: "03 · DRAFT", title: "Generate court-ready documents.", desc: "Bail applications, petitions, writs, agreements. Upload your own templates or use our library. Formatted for the bench you're filing in.", meta: "10-agent drafting pipeline" },
+  { step: "04 · RESEARCH & CITATION", title: "Every citation, verified and reference displayed.", desc: "Court approved format citations verified against source databases. Zero-hallucination policy — if the system isn't confident, it flags rather than invents.", meta: "100% verification target" },
   { step: "05 · STORAGE & CASE LIFECYCLE", title: "Every matter, end to end.", desc: "Encrypted vault storage with full-text search. Track each case from filing through hearings to disposal, with deadlines, status, and a clean archive when it closes.", meta: "Filing → Hearing → Disposal · Encrypted vault" },
 ]
 
 export const TRUST = [
-  { icon: "भा", title: "Vernacular, natively.", desc: (<><strong>English, Hindi, Marathi</strong> — not machine-translated. OCR reads Devanagari. Drafting generates in the language the filing demands.</>) },
-  { icon: "§", title: "Indian court hierarchy, built in.", desc: (<>Supreme Court, High Courts, District Courts, and Tribunals are <strong>first-class citizens</strong> in our case classification — not afterthoughts.</>) },
-  { icon: "✓", title: "Zero hallucination policy.", desc: (<>AI output that fails citation verification gets flagged, not published. <strong>Three or more triggers halt a response.</strong> No exceptions.</>) },
-  { icon: "🇮🇳", title: "Your data stays in India.", desc: (<>All infrastructure runs in GCP Mumbai (asia-south1). <strong>DPDPA 2023 compliant.</strong> No cross-border transfer. Ever.</>) },
+  { icon: "भा", title: "Supports Indian Languages.", desc: (<><strong>English, Marathi, Hindi, Tamil and Telugu etc</strong> — The system is capable of generating reports in most of the widely spoken Indian languages.</>) },
+  { icon: "§", title: "Built in Indian court hierarchy.", desc: (<>Supreme Court, High Courts, District Courts, and Tribunals are <strong>first-class citizens</strong> in our case classification — not afterthoughts.</>) },
+  { icon: "✓", title: "Zero hallucination policy.", desc: (<>The system seeks information only from approved authentic sources, multiple checks for accuracy across every response.</>) },
+  { icon: "🇮🇳", title: "Data sensitivity and security.", desc: (<>All data storage infrastructure in India. <strong>DPDPA compliant,</strong> No cross-border transfer of data. ever. End to End Encryption protection for all the data processed.</>) },
 ]
 
 export const HOW = [
   { num: "I.", title: "Create your account", desc: "Sign up in under two minutes. Add your Bar Council registration, choose your practice areas, and invite your team with role-based access." },
-  { num: "II.", title: "Upload your case", desc: "Add any documents — FIRs, judgments, contracts, affidavits. OCR handles the scanning. Indexing and chronology happen automatically." },
-  { num: "III.", title: "Chat, draft, cite, edit, collaborate", desc: "Ask questions. Generate drafts. Verify citations. Share with your team. The work that took two hours now takes minutes." },
+  { num: "II.", title: "Upload your case", desc: "Add documents — FIRs, judgments, contracts, affidavits. OCR scanning. Indexing and Chronology happens automatically." },
+  { num: "III.", title: "Chat, draft, cite, edit, collaborate", desc: "Ask questions. Generate drafts. Verify citations. Share with your team. The work that took hours now take minutes." },
 ]
 
 const PRICING_FEATURES = [
@@ -232,24 +232,28 @@ const PRICING_FEATURES = [
 export const PRICING = [
   {
     tier: "Solo lawyer",
-    now: "₹5,999",
-    period: "per month · billed monthly",
+    users: "(for 3 users)",
+    badge: "Limited time offer",
+    original: "₹5,999",
+    now: "₹3,999",
+    period: "/per month",
     features: PRICING_FEATURES,
     cta: "Start Free Trial",
     ctaClass: "btn-ghost",
   },
   {
     tier: "Law firm",
+    users: "(for 4 to 10 users)",
     now: "₹9,999",
-    period: "per month · billed monthly",
+    period: "/per month",
     features: PRICING_FEATURES,
     cta: "Start Free Trial",
     ctaClass: "btn-ghost",
   },
   {
-    tier: "Enterprise",
-    now: "Enterprise",
-    period: "tailored to your firm",
+    tier: "MID LAW FIRMS AND ENTERPRISES",
+    now: "Plan",
+    users: "tailored to your firm",
     features: PRICING_FEATURES,
     cta: "Talk to Sales",
     ctaClass: "btn-ghost",
@@ -259,46 +263,34 @@ export const PRICING = [
 export const TESTIMONIALS = [
   {
     quote:
-      "What used to take my junior an entire afternoon — pulling chronology, marking exhibits, drafting the bail application — now lands in front of me in under twenty minutes. JuriNex hasn't replaced the work, it's compressed it.",
-    name: "Adv. Rohan Deshmukh",
-    role: "Criminal Side · Bombay High Court",
-    initial: "R",
+      "\"As in-house counsel, I run a high volume of litigation at once, each matter with its own record and timeline. The challenge is holding all of it clearly in view. Jurinex helps me do that - it summarizes voluminous matters quickly and accurately, surfaces relevant citations, and cuts drafting time sharply. That lets me focus where in-house counsel adds real value: assessing exposure and advising the business, rather than getting buried in paperwork. For a lean corporate legal team, that efficiency is real.\"",
+    attribution: "— Adv. Aashish Manglani, Corporate Legal Team, Mahyco Seeds",
+    name: "Adv. Aashish Manglani",
   },
   {
     quote:
-      "The Marathi OCR alone was worth the subscription. We finally have a tool that reads our District Court filings without us re-typing the entire record.",
-    name: "Adv. Priya Joshi",
-    role: "Partner · Joshi & Associates, Pune",
-    initial: "P",
+      "\"Our work demands precision — the margin for error is thin. I'd always wondered how accurate AI could really be in the legal domain, and Jurinex has proved me wrong. I was working with it properly within hours, no training needed. The responses are sharp and save real time, and the combination of ease and effectiveness is the best part. Drafting that once took hours now takes thirty minutes — time I can put back into case strategy with my clients and into court appearances. For a lawyer, time is the one resource you can't recover. Jurinex gives it back.\"",
+    attribution: "— Adv. Shailesh Chapalgaonkar, High Court, Chhatrapati Sambhajinagar",
+    name: "Adv. Shailesh Chapalgaonkar",
   },
   {
     quote:
-      "Citation verification is the part I trust the most. If the system isn't certain, it tells me — and that's exactly the discipline I want from a tool I'm putting in front of the bench.",
-    name: "Adv. Karan Mehta",
-    role: "Counsel · Commercial Disputes, Delhi",
-    initial: "K",
+      "\"As a junior, the hardest part is the volume — reading long matters, pulling out what counts, and getting the dates and timelines exactly right before I brief senior counsel. There's no room to be vague. Jurinex's summarization changed that: I get to the core of a matter fast and accurately, with the chronology laid out clearly, so my briefs are tighter and I walk in confident they're right. It's made me better at my job, and the seniors have noticed.\"",
+    attribution: "— Adv. Prathamesh Borde, Associate, Chamber of Adv. Shailesh Chapalgaonkar",
+    name: "Adv. Prathamesh Borde",
   },
   {
     quote:
-      "Onboarding our 12-lawyer team took an afternoon. The role-based vault and shared case folders mean we've stopped emailing PDFs to each other — everything lives in one searchable place.",
-    name: "Adv. Neha Iyer",
-    role: "Managing Partner · Iyer Legal, Bengaluru",
-    initial: "N",
-  },
-  {
-    quote:
-      "I draft writ petitions for the Aurangabad bench every week. JuriNex understands the formatting, the citation style, and the local idiom — it doesn't try to make my filing sound like it's from New York.",
-    name: "Adv. Vikram Patil",
-    role: "Writ Side · HC Bombay, Aurangabad",
-    initial: "V",
+      "\"Our chamber practises heavily before the DRT, NCLT and in civil suits - dense matters that move fast. As a junior, the moment that tested me most was a client walking in when senior counsel wasn't around. Jurinex changed that. It helps me grasp a matter well enough to explain exactly where it stands, what comes next, and its real strengths and weak points - clearly, and without the client having to wait for the senior. They walk away with clarity straight away. For a junior in a busy chamber, that has been invaluable.\"",
+    attribution:
+      "— Adv. Akshay Kulkarni, Associate, Chamber of Adv. Yadkikar, Chhatrapati Sambhajinagar",
+    name: "Adv. Akshay Kulkarni",
   },
 ]
 
 export const TEAM = [
   { initial: "S", name: "Santosh Dehadrai", role: "Founder & CTO", bio: "Leads product vision, AI architecture, and engineering. 18+ months researching legal AI for India.", label: "Replace photo" },
   { initial: "S", name: "Saurabh Bhogale", role: "Co-Founder & BD", bio: "Leads business development, partnerships, and go-to-market strategy across Indian legal markets.", label: "Replace photo" },
-  { initial: "C", name: "Chaitrali", role: "Product Lead · Advocate", bio: "Practicing lawyer leading product demos and customer onboarding. Brings real courtroom context to every decision.", label: "Replace photo" },
-  { initial: "+", name: "The Engineering Team", role: "AI / ML · Backend · Frontend", bio: "Pravin, Vishal, Rutuja, Manasi, and the extended team — turning legal intuition into working software.", label: "5 more" },
 ]
 
 export const SOCIALS = [

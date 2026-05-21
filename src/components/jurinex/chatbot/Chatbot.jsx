@@ -38,6 +38,74 @@ const mkMsg = (role, content, extra = {}) => ({
   ...extra,
 })
 
+const renderInline = (text, keyPrefix) => {
+  const parts = []
+  const regex = /\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`/g
+  let last = 0
+  let match
+  let i = 0
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > last) parts.push(text.slice(last, match.index))
+    if (match[1] !== undefined) {
+      parts.push(<strong key={`${keyPrefix}-b${i}`}>{match[1]}</strong>)
+    } else if (match[2] !== undefined) {
+      parts.push(<em key={`${keyPrefix}-i${i}`}>{match[2]}</em>)
+    } else if (match[3] !== undefined) {
+      parts.push(<code key={`${keyPrefix}-c${i}`}>{match[3]}</code>)
+    }
+    last = match.index + match[0].length
+    i++
+  }
+  if (last < text.length) parts.push(text.slice(last))
+  return parts
+}
+
+const renderMessageContent = (content) => {
+  if (typeof content !== "string") return content
+  const lines = content.split("\n")
+  const blocks = []
+  let list = null
+  const flushList = () => {
+    if (list && list.length) {
+      blocks.push(
+        <ul key={`ul-${blocks.length}`} className="jx-md-ul">{list}</ul>,
+      )
+    }
+    list = null
+  }
+  lines.forEach((raw, idx) => {
+    const line = raw.trimEnd()
+    const trimmed = line.trim()
+    if (!trimmed) { flushList(); return }
+    const headingMatch = /^(#{1,4})\s+(.*)$/.exec(trimmed)
+    const bulletMatch = /^[*-]\s+(.*)$/.exec(trimmed)
+    if (headingMatch) {
+      flushList()
+      const level = headingMatch[1].length
+      const Tag = level <= 2 ? "h4" : "h5"
+      blocks.push(
+        <Tag key={`h-${idx}`} className="jx-md-h">
+          {renderInline(headingMatch[2], `h${idx}`)}
+        </Tag>,
+      )
+    } else if (bulletMatch) {
+      if (!list) list = []
+      list.push(
+        <li key={`li-${idx}`}>{renderInline(bulletMatch[1], `li${idx}`)}</li>,
+      )
+    } else {
+      flushList()
+      blocks.push(
+        <p key={`p-${idx}`} className="jx-md-p">
+          {renderInline(trimmed, `p${idx}`)}
+        </p>,
+      )
+    }
+  })
+  flushList()
+  return blocks
+}
+
 export default function Chatbot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState([
@@ -401,7 +469,7 @@ export default function Chatbot() {
                   m.type === "system" ? " jx-bubble-sys" : ""
                 }`}
               >
-                {m.content}
+                {renderMessageContent(m.content)}
               </div>
 
               {m.type === "slots" && !m.voice && (

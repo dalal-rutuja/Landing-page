@@ -123,7 +123,8 @@
 .jx .nav-links {
   display: flex; gap: 32px;
   font-size: 14.5px;
-  color: var(--ink-soft);
+  color: var(--ink);
+  font-weight: 500;
 }
 .jx .nav-links a { transition: color 0.15s; }
 .jx .nav-links a:hover { color: var(--red); }
@@ -180,7 +181,7 @@
   font-weight: 400;
   color: var(--ink);
   max-width: 900px;
-  margin-bottom: 28px;
+  margin-bottom: 48px;
 }
 .jx .hero-logo-wrap {
   text-align: center;
@@ -1075,9 +1076,11 @@
 .jx .workflow-step {
   font-family: var(--mono);
   font-size: 11.5px;
+  line-height: 1.45;
   color: var(--red);
   letter-spacing: 0.08em;
   margin-bottom: 18px;
+  min-height: 2.9em;
 }
 .jx .workflow-title {
   font-family: var(--serif);
@@ -1200,7 +1203,7 @@
   background: var(--paper-cool);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 36px 32px;
+  padding: 64px 32px 36px;
   position: relative;
   display: flex; flex-direction: column; gap: 8px;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
@@ -1220,14 +1223,16 @@
   margin-bottom: 12px;
 }
 .jx .price-amount {
-  display: flex; align-items: baseline; gap: 10px;
-  margin-bottom: 6px;
+  display: flex; align-items: baseline; gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
 }
 .jx .price-original {
-  font-size: 17px;
+  font-size: 30px;
   color: var(--muted-soft);
   text-decoration: line-through;
-  font-family: var(--mono);
+  font-family: var(--serif);
+  font-weight: 400;
 }
 .jx .price-now {
   font-family: var(--serif);
@@ -1236,7 +1241,34 @@
   color: var(--ink);
   font-weight: 400;
 }
-.jx .price-period { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+.jx .price-period {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.jx .price-users {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+  margin-top: -8px;
+  margin-bottom: 4px;
+}
+.jx .price-badge {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 5px 11px;
+  border-radius: 999px;
+  width: fit-content;
+}
 .jx .price-features {
   list-style: none;
   margin: 24px 0 28px;
@@ -1272,20 +1304,22 @@
   flex-wrap: nowrap;
   align-items: center;
   gap: 16px;
-  margin-top: 8px;
+  margin: 8px auto 0;
+  max-width: 1040px;
 }
 .jx .testimonials-track {
   flex: 1;
   min-width: 0;
-  display: flex;
-  gap: 22px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
+  overflow: hidden;
   padding: 6px 4px;
 }
-.jx .testimonials-track::-webkit-scrollbar { display: none; }
+.jx .testimonials-track-inner {
+  display: flex;
+  width: 100%;
+  will-change: transform;
+  transition-property: transform;
+  transition-timing-function: ease;
+}
 .jx .testimonials-arrow {
   flex-shrink: 0;
   width: 52px;
@@ -1327,80 +1361,72 @@
   outline-offset: 3px;
 }
 .jx .testimonial-card {
-  flex: 0 0 calc((100% - 44px) / 3);
-  scroll-snap-align: start;
+  flex: 0 0 100%;
   background: var(--paper);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px 28px 26px;
+  border-radius: 18px;
+  padding: 36px 44px;
   position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 18px;
+  flex-direction: row;
+  align-items: center;
+  gap: 36px;
+  min-height: 320px;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 .jx .testimonial-card:hover {
-  transform: translateY(-4px);
   border-color: color-mix(in srgb, var(--red) 45%, var(--border));
   background: color-mix(in srgb, var(--red) 4%, var(--paper));
   box-shadow: 0 18px 38px -22px color-mix(in srgb, var(--red) 38%, transparent);
 }
-.jx .testimonial-mark {
-  font-family: var(--serif);
-  font-size: 64px;
-  line-height: 0.6;
-  color: var(--red);
-  opacity: 0.55;
-  height: 22px;
-}
-.jx .testimonial-quote {
-  font-size: 15.5px;
-  line-height: 1.65;
-  color: var(--ink-soft);
-  font-style: italic;
-  margin: 0;
-  flex: 1;
-}
-.jx .testimonial-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
-  margin: 0;
-}
-.jx .testimonial-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--red);
-  color: #fff;
+.jx .testimonial-photo {
+  flex: 0 0 200px;
+  aspect-ratio: 3 / 4;
+  background: var(--paper-warm);
+  border-radius: 12px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--serif);
-  font-size: 20px;
-  flex-shrink: 0;
 }
-.jx .testimonial-meta-text { display: flex; flex-direction: column; gap: 2px; }
-.jx .testimonial-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink);
+.jx .testimonial-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-.jx .testimonial-role {
+.jx .testimonial-photo-fallback {
   font-family: var(--mono);
-  font-size: 11.5px;
-  letter-spacing: 0.04em;
+  font-size: 13px;
   color: var(--muted);
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.jx .testimonial-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.jx .testimonial-quote {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.jx .testimonial-attribution {
+  font-size: 14.5px;
+  color: var(--ink);
+  font-weight: 500;
+  font-style: normal;
 }
 
 /* ------------------ TEAM ------------------ */
 .jx .team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
+  max-width: 720px;
 }
 .jx .team-card { display: flex; flex-direction: column; gap: 14px; }
 .jx .team-photo {
@@ -1714,8 +1740,10 @@
   .jx .how-grid { grid-template-columns: 1fr; gap: 48px; }
   .jx .pricing-grid { grid-template-columns: 1fr; }
   .jx .price-card:hover { transform: none; }
-  .jx .testimonial-card { flex-basis: calc((100% - 22px) / 2); }
+  .jx .testimonial-card { padding: 28px 28px; min-height: auto; gap: 24px; }
   .jx .testimonial-card:hover { transform: none; }
+  .jx .testimonial-photo { flex-basis: 160px; }
+  .jx .testimonial-quote { font-size: 15.5px; }
   .jx .team-grid { grid-template-columns: repeat(2, 1fr); }
   .jx .footer-top { grid-template-columns: 1fr 1fr; }
   .jx section { padding: 70px 24px; }
@@ -1727,7 +1755,14 @@
   .jx .audience-card:last-child { border-bottom: none; }
   .jx .workflow-grid { grid-template-columns: 1fr; }
   .jx .trust-grid { grid-template-columns: 1fr; }
-  .jx .testimonial-card { flex-basis: 100%; }
+  .jx .testimonial-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 22px;
+    gap: 18px;
+  }
+  .jx .testimonial-photo { flex-basis: auto; width: 140px; }
+  .jx .testimonial-quote { font-size: 14.5px; }
   .jx .testimonials-carousel { gap: 10px; }
   .jx .testimonials-arrow {
     width: 44px;

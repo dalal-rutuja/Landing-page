@@ -6,7 +6,7 @@ export default function AudienceSection() {
       <div className="container">
         <div className="section-eyebrow">Built for every kind of legal practice</div>
         <h2 className="section-title">
-          Whether you're a <em>solo advocate</em> or a <em>corporate legal team</em> &mdash;
+          Whether you're a <em>solo practitioner</em> or a <em>corporate legal team</em> &mdash;
           Jurinex is the solution.
         </h2>
 
