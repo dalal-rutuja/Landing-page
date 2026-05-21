@@ -11,6 +11,7 @@ import {
   DRAFT_TEMPLATES,
   RECENT_DRAFTS,
 } from "./content"
+import gravalIcon from "../../assets/graval.png"
 
 const SLIDES = [
   { url: "jurinex.ai/#/dashboard",   Component: SlideDashboardChat },
@@ -25,6 +26,7 @@ const HERO_TRANSITION_MS = 700
 export default function Hero() {
   const [slide, setSlide] = useState(1)
   const [paused, setPaused] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [animate, setAnimate] = useState(true)
 
   const slidesLoop = useMemo(() => {
@@ -36,13 +38,19 @@ export default function Hero() {
   const realSlide = ((slide - 1 + SLIDES.length) % SLIDES.length + SLIDES.length) % SLIDES.length
 
   useEffect(() => {
-    if (paused) return
+    if (paused || hidden) return
     const id = setInterval(() => {
       setAnimate(true)
       setSlide((s) => s + 1)
     }, SLIDE_INTERVAL_MS)
     return () => clearInterval(id)
-  }, [paused])
+  }, [paused, hidden])
+
+  useEffect(() => {
+    const onVisibilityChange = () => setHidden(document.hidden)
+    document.addEventListener("visibilitychange", onVisibilityChange)
+    return () => document.removeEventListener("visibilitychange", onVisibilityChange)
+  }, [])
 
   const goNext = () => {
     setAnimate(true)
@@ -54,21 +62,35 @@ export default function Hero() {
     setSlide((s) => s - 1)
   }
 
-  const handleTrackTransitionEnd = () => {
-    if (slide === SLIDES.length + 1) {
+  useEffect(() => {
+    if (slide > SLIDES.length) {
+      const t = setTimeout(() => {
+        setAnimate(false)
+        setSlide(1)
+      }, HERO_TRANSITION_MS)
+      return () => clearTimeout(t)
+    }
+    if (slide < 1) {
+      const t = setTimeout(() => {
+        setAnimate(false)
+        setSlide(SLIDES.length)
+      }, HERO_TRANSITION_MS)
+      return () => clearTimeout(t)
+    }
+  }, [slide])
+
+  useEffect(() => {
+    if (slide < 0 || slide > slidesLoop.length - 1) {
       setAnimate(false)
       setSlide(1)
-      return
     }
-    if (slide === 0) {
-      setAnimate(false)
-      setSlide(SLIDES.length)
-    }
-  }
+  }, [slide, slidesLoop.length])
 
   useEffect(() => {
     if (!animate) {
-      const id = requestAnimationFrame(() => setAnimate(true))
+      const id = requestAnimationFrame(() =>
+        requestAnimationFrame(() => setAnimate(true))
+      )
       return () => cancelAnimationFrame(id)
     }
   }, [animate])
@@ -77,7 +99,7 @@ export default function Hero() {
     <section className="hero">
       <h1 className="hero-headline">
         <span className="hero-headline-left hero-headline-nowrap">Enterprise grade legal operating system</span>
-        <em className="hero-headline-left">for  Professionals</em>
+        <em className="hero-headline-left">for Law Professionals</em>
         <em className="hero-headline-left">powered by AI</em>
       </h1>
 
@@ -114,7 +136,6 @@ export default function Hero() {
               transform: `translateX(-${slide * 100}%)`,
               transitionDuration: animate ? `${HERO_TRANSITION_MS}ms` : "0ms",
             }}
-            onTransitionEnd={handleTrackTransitionEnd}
           >
             {slidesLoop.map(({ Component }, i) => (
               <div className="hero-slide" key={i}><Component /></div>
@@ -164,8 +185,8 @@ function FullSidebar({ activeKey }) {
   return (
     <div className="preview-sidebar preview-sidebar-full">
       <div className="preview-sidebar-logo">
-        <div className="preview-sidebar-logo-mark">JN</div>
-        <span className="preview-sidebar-logo-text">JuriNex</span>
+        <img src={gravalIcon} alt="" className="preview-sidebar-logo-mark" />
+        <span className="preview-sidebar-logo-text">JURINEX</span>
       </div>
       <div className="preview-sidebar-group">
         {SIDEBAR_ITEMS_FULL_TOP.map((item) => (

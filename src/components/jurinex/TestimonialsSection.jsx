@@ -6,6 +6,7 @@ const TRANSITION_MS = 650
 
 export default function TestimonialsSection() {
   const [paused, setPaused] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [index, setIndex] = useState(1)
   const [animate, setAnimate] = useState(true)
 
@@ -29,26 +30,47 @@ export default function TestimonialsSection() {
   }
 
   useEffect(() => {
-    if (paused || showCount <= 1) return
+    if (paused || hidden || showCount <= 1) return
     const id = setInterval(() => goToNext(), AUTO_SCROLL_MS)
     return () => clearInterval(id)
-  }, [paused, showCount])
+  }, [paused, hidden, showCount])
 
-  const handleTransitionEnd = () => {
-    if (index === showCount + 1) {
+  useEffect(() => {
+    const onVisibilityChange = () => setHidden(document.hidden)
+    document.addEventListener("visibilitychange", onVisibilityChange)
+    return () => document.removeEventListener("visibilitychange", onVisibilityChange)
+  }, [])
+
+  useEffect(() => {
+    if (showCount <= 1) return
+    if (index > showCount) {
+      const t = setTimeout(() => {
+        setAnimate(false)
+        setIndex(1)
+      }, TRANSITION_MS)
+      return () => clearTimeout(t)
+    }
+    if (index < 1) {
+      const t = setTimeout(() => {
+        setAnimate(false)
+        setIndex(showCount)
+      }, TRANSITION_MS)
+      return () => clearTimeout(t)
+    }
+  }, [index, showCount])
+
+  useEffect(() => {
+    if (index < 0 || index > slides.length - 1) {
       setAnimate(false)
       setIndex(1)
-      return
     }
-    if (index === 0) {
-      setAnimate(false)
-      setIndex(showCount)
-    }
-  }
+  }, [index, slides.length])
 
   useEffect(() => {
     if (!animate) {
-      const id = requestAnimationFrame(() => setAnimate(true))
+      const id = requestAnimationFrame(() =>
+        requestAnimationFrame(() => setAnimate(true))
+      )
       return () => cancelAnimationFrame(id)
     }
   }, [animate])
@@ -102,7 +124,6 @@ export default function TestimonialsSection() {
                 transform: `translateX(-${index * 100}%)`,
                 transitionDuration: animate ? `${TRANSITION_MS}ms` : "0ms",
               }}
-              onTransitionEnd={handleTransitionEnd}
             >
               {slides.map((t, idx) => (
                 <figure className="testimonial-card" key={`${t.name}-${idx}`}>

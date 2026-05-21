@@ -189,10 +189,9 @@ export const STRIP_STATS = [
 ]
 
 export const AUDIENCES = [
-  { icon: "I", title: "Solo Practitioners", desc: "Court advocates and individual consultants handling their own drafting, research, and case files." },
-  { icon: "II", title: "Small Law Firms", desc: "3–10 lawyer practices needing shared vaults, multi-user access, and team collaboration." },
-  { icon: "III", title: "Mid-Size Firms", desc: "11–50 lawyers needing granular permissions, white-label output." },
-  { icon: "IV", title: "Enterprise Legal", desc: "In-house teams managing bulk contracts, compliance workflows, and matter tracking at scale." },
+  { icon: "I", title: "Solo Practitioners", desc: "3 seats" },
+  { icon: "II", title: "Small Law Firms", desc: "4 to 10 seats" },
+  { icon: "III", title: "Large Law Firms and Enterprises", desc: "11 and above seats" },
 ]
 
 export const WORKFLOW = [
@@ -205,14 +204,14 @@ export const WORKFLOW = [
 
 export const TRUST = [
   { icon: "भा", title: "Supports Indian Languages.", desc: (<><strong>English, Marathi, Hindi, Tamil and Telugu etc</strong> — The system is capable of generating reports in most of the widely spoken Indian languages.</>) },
-  { icon: "§", title: "Built in Indian court hierarchy.", desc: (<>Supreme Court, High Courts, District Courts, and Tribunals are <strong>first-class citizens</strong> in our case classification — not afterthoughts.</>) },
+  { icon: "§", title: "Built for Indian court hierarchy.", desc: (<>Drafts in formats suitable for District Courts, High Courts, Supreme Court as well as tribunals.</>) },
   { icon: "✓", title: "Zero hallucination policy.", desc: (<>The system seeks information only from approved authentic sources, multiple checks for accuracy across every response.</>) },
   { icon: "🇮🇳", title: "Data sensitivity and security.", desc: (<>All data storage infrastructure in India. <strong>DPDPA compliant,</strong> No cross-border transfer of data. ever. End to End Encryption protection for all the data processed.</>) },
 ]
 
 export const HOW = [
   { num: "I.", title: "Create your account", desc: "Sign up in under two minutes. Add your Bar Council registration, choose your practice areas, and invite your team with role-based access." },
-  { num: "II.", title: "Upload your case", desc: "Add documents — FIRs, judgments, contracts, affidavits. OCR scanning. Indexing and Chronology happens automatically." },
+  { num: "II.", title: "Upload your case", desc: "Add documents — FIRs, judgments, contracts, affidavits. OCR scanning, Indexing and Chronology happens automatically." },
   { num: "III.", title: "Chat, draft, cite, edit, collaborate", desc: "Ask questions. Generate drafts. Verify citations. Share with your team. The work that took hours now take minutes." },
 ]
 
@@ -231,8 +230,8 @@ const PRICING_FEATURES = [
 
 export const PRICING = [
   {
-    tier: "Solo lawyer",
-    users: "(for 3 users)",
+    tier: "Solo practitioner",
+    users: "(for 3 seats)",
     badge: "Limited time offer",
     original: "₹5,999",
     now: "₹3,999",
@@ -242,8 +241,8 @@ export const PRICING = [
     ctaClass: "btn-ghost",
   },
   {
-    tier: "Law firm",
-    users: "(for 4 to 10 users)",
+    tier: "Small law firm",
+    users: "(for 4 to 10 seats)",
     now: "₹9,999",
     period: "/per month",
     features: PRICING_FEATURES,
@@ -251,11 +250,11 @@ export const PRICING = [
     ctaClass: "btn-ghost",
   },
   {
-    tier: "MID LAW FIRMS AND ENTERPRISES",
+    tier: "Large law firms and enterprises",
     now: "Plan",
     users: "tailored to your firm",
     features: PRICING_FEATURES,
-    cta: "Talk to Sales",
+    cta: "Start Free Trial",
     ctaClass: "btn-ghost",
   },
 ]
@@ -289,8 +288,36 @@ export const TESTIMONIALS = [
 ]
 
 export const TEAM = [
-  { initial: "S", name: "Santosh Dehadrai", role: "Founder & CTO", bio: "Leads product vision, AI architecture, and engineering. 18+ months researching legal AI for India.", label: "Replace photo" },
-  { initial: "S", name: "Saurabh Bhogale", role: "Co-Founder & BD", bio: "Leads business development, partnerships, and go-to-market strategy across Indian legal markets.", label: "Replace photo" },
+  {
+    initial: "S",
+    name: "Santosh Dehadrai",
+    line1: "Founder,",
+    line2: "CTO  & Principle Architect",
+  },
+  {
+    initial: "S",
+    name: "Saurabh Bhogale",
+    line1: "Co Founder",
+    line2: "Executive Director & Project Coordinator",
+  },
+  {
+    initial: "A",
+    name: "Adv. Amit yadkikar",
+    line1: "Legal Expert",
+    line2: "Chh. Sambhajinagar High Court",
+  },
+  {
+    initial: "A",
+    name: "Adv. Amar Damodar Soman",
+    line1: "Legal Expert",
+    line2: "Chh. Sambhajinagar High Court",
+  },
+  {
+    initial: "A",
+    name: "Adv. Anoop Patil",
+    line1: "Legal Expert",
+    line2: "Chh. Sambhajinagar High Court",
+  },
 ]
 
 export const SOCIALS = [
