@@ -1,5 +1,8 @@
 // Static content for the JuriNex landing page — kept separate from markup.
 
+import amarSomanPhoto from "../../assets/amar-soman.png"
+import amitYadkikarPhoto from "../../assets/amit-yadkikar.png"
+
 export const SIDEBAR_ICONS = {
   dashboard: (
     <svg className="preview-sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -203,10 +206,10 @@ export const WORKFLOW = [
 ]
 
 export const TRUST = [
-  { icon: "भा", title: "Supports Indian Languages.", desc: (<><strong>English, Marathi, Hindi, Tamil and Telugu etc</strong> — The system is capable of generating reports in most of the widely spoken Indian languages.</>) },
-  { icon: "§", title: "Built for Indian court hierarchy.", desc: (<>Drafts in formats suitable for District Courts, High Courts, Supreme Court as well as tribunals.</>) },
-  { icon: "✓", title: "Zero hallucination policy.", desc: (<>The system seeks information only from approved authentic sources, multiple checks for accuracy across every response.</>) },
-  { icon: "🇮🇳", title: "Data sensitivity and security.", desc: (<>All data storage infrastructure in India. <strong>DPDPA compliant,</strong> No cross-border transfer of data. ever. End to End Encryption protection for all the data processed.</>) },
+  { icon: "भा", title: "Supports Indian Languages.", desc: (<><strong>Marathi, Hindi, Tamil, Telugu,</strong> and other widely spoken Indian languages are supported by the system, enabling it to generate reports in these languages.</>) },
+  { icon: "§", title: "Built for Indian court hierarchy.", desc: (<>Drafts are prepared in formats suitable for District Courts, High Courts, Supreme Court, and tribunals.</>) },
+  { icon: "✓", title: "Zero hallucination policy.", desc: (<>The system retrieves information solely from authorised and verified sources, subjecting each response to multiple verification checks for accuracy.</>) },
+  { icon: "🇮🇳", title: "Data sensitivity and security.", desc: (<>All data storage infrastructure is in India. Complies with the <strong>Data Protection and Privacy Act (DPDPA).</strong> No cross-border data transfer policy. End-to-end encryption is provided for all data processed.</>) },
 ]
 
 export const HOW = [
@@ -302,12 +305,14 @@ export const TEAM = [
   },
   {
     initial: "A",
+    photo: amitYadkikarPhoto,
     name: "Adv. Amit yadkikar",
     line1: "Legal Expert",
     line2: "Chh. Sambhajinagar High Court",
   },
   {
     initial: "A",
+    photo: amarSomanPhoto,
     name: "Adv. Amar Damodar Soman",
     line1: "Legal Expert",
     line2: "Chh. Sambhajinagar High Court",

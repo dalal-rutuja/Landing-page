@@ -80,10 +80,6 @@ export default function TestimonialsSection() {
       <div className="container">
         <div className="section-eyebrow">Voices from the bench &amp; bar</div>
         <h2 className="section-title">What our users are saying.</h2>
-        <p className="section-lead">
-          Advocates and firms across Indian jurisdictions, using JuriNex for real
-          filings &mdash; not pilots.
-        </p>
 
         <div
           className="testimonials-carousel"

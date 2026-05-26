@@ -102,15 +102,24 @@ export default function TeamSection() {
               onTransitionEnd={handleTransitionEnd}
             >
               {slides.map((m, i) => (
-                <article className="team-slide" key={`${m.name}-${i}`}>
+                <article
+                  className={`team-slide${m.photo ? " team-slide--photo-only" : ""}`}
+                  key={`${m.name}-${i}`}
+                >
                   <div className="team-slide-photo">
-                    <div className="team-photo-initial">{m.initial}</div>
+                    {m.photo ? (
+                      <img className="team-photo-img" src={m.photo} alt={m.name} />
+                    ) : (
+                      <div className="team-photo-initial">{m.initial}</div>
+                    )}
                   </div>
-                  <div className="team-slide-foot">
-                    <div className="team-name">{m.name}</div>
-                    <div className="team-role-line">{m.line1}</div>
-                    <div className="team-role-line">{m.line2}</div>
-                  </div>
+                  {!m.photo && (
+                    <div className="team-slide-foot">
+                      <div className="team-name">{m.name}</div>
+                      <div className="team-role-line">{m.line1}</div>
+                      <div className="team-role-line">{m.line2}</div>
+                    </div>
+                  )}
                 </article>
               ))}
             </div>
