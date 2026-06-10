@@ -1,10 +1,12 @@
 // Static content for the JuriNex landing page — kept separate from markup.
 
-import amarSomanPhoto from "../../assets/amar-soman.png"
-import amitYadkikarPhoto from "../../assets/amit-yadkikar.png"
-import anoopPatilPhoto from "../../assets/anoop-patil.png"
-import shaileshChapalgaonkarPhoto from "../../assets/shailesh-chapalgaonkar.png"
-import akshayKulkarniPhoto from "../../assets/akshay-kulkarni.png"
+import amarSomanPhoto from "../../assets/Amar.jpg"
+import amitYadkikarPhoto from "../../assets/amit.jpg"
+import anoopPatilPhoto from "../../assets/anoop.jpg"
+import santoshPhoto from "../../assets/santosh.png"
+import saurabhPhoto from "../../assets/saurabh.png"
+import shaileshChapalgaonkarPhoto from "../../assets/shailesh.jpg"
+import akshayKulkarniPhoto from "../../assets/akshay.jpg"
 
 export const SIDEBAR_ICONS = {
   dashboard: (
@@ -267,69 +269,116 @@ export const PRICING = [
 
 export const TESTIMONIALS = [
   {
+    tag: "In-House Counsel",
     quote:
-      "\"As in-house counsel, I run a high volume of litigation at once, each matter with its own record and timeline. The challenge is holding all of it clearly in view. Jurinex helps me do that - it summarizes voluminous matters quickly and accurately, surfaces relevant citations, and cuts drafting time sharply. That lets me focus where in-house counsel adds real value: assessing exposure and advising the business, rather than getting buried in paperwork. For a lean corporate legal team, that efficiency is real.\"",
-    attribution: "— Adv. Aashish Manglani, Corporate Legal Team, Mahyco Seeds",
+      "\"I run a high volume of litigation, and the hardest part is holding it all clearly in view. Jurinex summarises matters fast and accurately, surfaces the right citations, and cuts drafting time - so I can focus on assessing exposure and advising the business. For a lean legal team, that efficiency is real.\"",
     name: "Adv. Aashish Manglani",
+    role: "Corporate Legal Team, Mahyco Seeds",
   },
   {
+    tag: "Trial Advocate",
     quote:
-      "\"Our work demands precision — the margin for error is thin. I'd always wondered how accurate AI could really be in the legal domain, and Jurinex has proved me wrong. I was working with it properly within hours, no training needed. The responses are sharp and save real time, and the combination of ease and effectiveness is the best part. Drafting that once took hours now takes thirty minutes — time I can put back into case strategy with my clients and into court appearances. For a lawyer, time is the one resource you can't recover. Jurinex gives it back.\"",
-    attribution: "— Adv. Shailesh Chapalgaonkar, High Court, Chhatrapati Sambhajinagar",
+      "\"Our work demands precision, and I doubted AI could deliver it in law - Jurinex proved me wrong. I was productive within hours, no training needed. Drafting that once took hours now takes thirty minutes, giving me time back for case strategy and court. For a lawyer, time is the one resource you can't recover - Jurinex gives it back.\"",
     name: "Adv. Shailesh Chapalgaonkar",
+    role: "High Court, Chhatrapati Sambhajinagar",
     photo: shaileshChapalgaonkarPhoto,
-    cardImage: true,
   },
   {
+    tag: "Junior Associate",
     quote:
-      "\"As a junior, the hardest part is the volume — reading long matters, pulling out what counts, and getting the dates and timelines exactly right before I brief senior counsel. There's no room to be vague. Jurinex's summarization changed that: I get to the core of a matter fast and accurately, with the chronology laid out clearly, so my briefs are tighter and I walk in confident they're right. It's made me better at my job, and the seniors have noticed.\"",
-    attribution: "— Adv. Prathamesh Borde, Associate, Chamber of Adv. Shailesh Chapalgaonkar",
+      "\"As a junior, the hardest part is the volume - reading long matters and getting every date and timeline right before briefing senior counsel. Jurinex's summarisation gets me to the core fast, with the chronology laid out clearly, so my briefs are tighter and I walk in confident. The seniors have noticed.\"",
     name: "Adv. Prathamesh Borde",
+    role: "Associate, Chamber of Adv. Shailesh Chapalgaonkar",
   },
   {
+    tag: "Chamber Associate",
     quote:
-      "\"Our chamber practises heavily before the DRT, NCLT and in civil suits - dense matters that move fast. As a junior, the moment that tested me most was a client walking in when senior counsel wasn't around. Jurinex changed that. It helps me grasp a matter well enough to explain exactly where it stands, what comes next, and its real strengths and weak points - clearly, and without the client having to wait for the senior. They walk away with clarity straight away. For a junior in a busy chamber, that has been invaluable.\"",
-    attribution:
-      "— Adv. Akshay Kulkarni, Associate, Chamber of Adv. Yadkikar, Chhatrapati Sambhajinagar",
+      "\"Our chamber handles dense matters that move fast. The moment that tested me most was a client arriving when senior counsel wasn't around. Jurinex helps me grasp a matter well enough to explain where it stands, what comes next, and its real strengths and weaknesses - clearly, without the client having to wait. For a junior, that's been invaluable.\"",
     name: "Adv. Akshay Kulkarni",
+    role: "Associate, Chamber of Adv. Yadkikar, Chhatrapati Sambhajinagar",
     photo: akshayKulkarniPhoto,
-    cardImage: true,
   },
 ]
 
-export const TEAM = [
+// ---- Executive Core: the core operating team behind JuriNex ----
+export const TEAM_EXECUTIVES = [
   {
     initial: "S",
+    photo: santoshPhoto,
     name: "Santosh Dehadrai",
-    line1: "Founder,",
-    line2: "CTO  & Principle Architect",
+    role: "Founder, CTO & Principal Architect",
+    quote:
+      "Architecting neural-AI legal infrastructure with engineering rigour and precision.",
+    achievement: {
+      title: "Principal AI Architect",
+      sub: "NexIntel AI Pvt Ltd",
+    },
+    education: "AI & Systems Engineering",
+    work: "NexIntel AI Pvt Ltd",
   },
   {
     initial: "S",
+    photo: saurabhPhoto,
     name: "Saurabh Bhogale",
-    line1: "Co Founder",
-    line2: "Executive Director & Project Coordinator",
+    role: "Co-Founder, Executive Director & Project Coordinator",
+    quote:
+      "Bridging product execution with operational excellence across the JuriNex platform.",
+    achievement: {
+      title: "Executive Director",
+      sub: "Product & Operations",
+    },
+    education: "Engineering & Management",
+    work: "NexIntel AI Pvt Ltd",
   },
+]
+
+// ---- Advisory Board: the legal validation panel auditing our AI pipelines ----
+// Each advisor carries 4 stats; `icon` selects the glyph rendered beside the label.
+export const TEAM_ADVISORS = [
   {
     initial: "A",
     photo: amitYadkikarPhoto,
-    name: "Adv. Amit yadkikar",
-    line1: "Legal Expert",
-    line2: "Chh. Sambhajinagar High Court",
+    name: "Adv. Amit A. Yadkikar",
+    surname: "Yadkikar",
+    focus: "center top",
+    role: "Litigation & Procedural Rigour",
+    bio: "Amit Yadkikar approaches every matter the way his family has practised law for over a century — methodically, deliberately, leaving nothing to chance. A High Court Advocate at the Aurangabad Bench with nearly two decades at the Bar and a rare Diploma in Cyber Laws, he has made disciplined process his signature across commercial, banking, arbitration, and civil litigation. He brings the same rigour to JuriNex, ensuring the platform reasons the way a meticulous lawyer does, so speed never comes at the cost of soundness and every output holds up to the scrutiny of an Indian courtroom.",
+    stats: [
+      { icon: "scale", label: "High Court Advocate", value: "Aurangabad Bench" },
+      { icon: "building", label: "Experience", value: "Nearly two decades at the Bar" },
+      { icon: "book", label: "Education", value: "Diploma in Cyber Laws" },
+      { icon: "people", label: "Legacy", value: "Over a century of legal practice" },
+    ],
   },
   {
     initial: "A",
     photo: amarSomanPhoto,
-    name: "Adv. Amar Damodar Soman",
-    line1: "Legal Expert",
-    line2: "Chh. Sambhajinagar High Court",
+    name: "Adv. Amar D. Soman",
+    surname: "Soman",
+    focus: "center bottom",
+    role: "Litigation & Case Strategy",
+    bio: "For fifteen years at the Bombay High Court, Amar Soman has done what the best litigators do but few can teach — read the room, read the witness, and read the lines no one wrote down. Leading Soman & Associates across commercial litigation, arbitration, debt recovery, and high-stakes due diligence for clients like Indian Railways, the Income Tax Department, and Saint-Gobain, he built an instinct for what a case is really about beneath what the file says. JuriNex drew him in because he saw a chance to encode the part of legal judgment that usually walks out the door with the senior lawyer — the ability to sense intent, weigh adversarial posture, and surface what matters before anyone asks.",
+    stats: [
+      { icon: "scale", label: "High Court Advocate", value: "Bombay High Court" },
+      { icon: "building", label: "Experience", value: "Fifteen years at the Bar" },
+      { icon: "book", label: "Expertise", value: "Commercial litigation, arbitration, debt recovery and due diligence" },
+      { icon: "people", label: "Client Work", value: "Indian Railways, Income Tax Department and Saint-Gobain" },
+    ],
   },
   {
     initial: "A",
     photo: anoopPatilPhoto,
-    name: "Adv. Anoop Patil",
-    line1: "Legal Expert",
-    line2: "Chh. Sambhajinagar High Court",
+    name: "Adv. Anoop U. Patil",
+    surname: "Patil",
+    focus: "center top",
+    role: "Litigation, Commercial Law & Legal Advisory",
+    bio: "Adv. Anoop Umakant Patil practises before the High Court of Judicature at Bombay and its Aurangabad Bench, handling independent work across civil, criminal, constitutional, commercial, arbitration, intellectual property, real estate, and banking matters. He appears regularly before the City Civil and Metropolitan Magistrate Courts and tribunals including the DRT, NCLT, and administrative and consumer forums. He has also served as panel counsel for institutions such as the Slum Rehabilitation Authority, IndusInd Bank, the Municipal Corporation of Greater Mumbai, NHAI, and the Dedicated Freight Corridor Corporation of India.",
+    stats: [
+      { icon: "scale", label: "High Court Advocate", value: "Bombay High Court and Aurangabad Bench" },
+      { icon: "building", label: "Experience", value: "Practicing since 2006" },
+      { icon: "book", label: "Education", value: "LL.M., Queen Mary University of London | BSL LL.B., ILS Law College Pune" },
+      { icon: "people", label: "Client Work", value: "MCGM, SRA, NHAI, DFCCIL, TATA Steel, WIPRO, Tech Mahindra and IndusInd Bank" },
+    ],
   },
 ]
 

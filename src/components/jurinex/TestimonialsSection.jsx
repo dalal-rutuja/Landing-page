@@ -1,12 +1,10 @@
 import { useEffect, useMemo, useState } from "react"
 import { TESTIMONIALS } from "./content"
 
-const AUTO_SCROLL_MS = 4500
 const TRANSITION_MS = 650
+const AUTO_SCROLL_MS = 5000
 
 export default function TestimonialsSection() {
-  const [paused, setPaused] = useState(false)
-  const [hidden, setHidden] = useState(false)
   const [index, setIndex] = useState(1)
   const [animate, setAnimate] = useState(true)
 
@@ -30,16 +28,10 @@ export default function TestimonialsSection() {
   }
 
   useEffect(() => {
-    if (paused || hidden || showCount <= 1) return
-    const id = setInterval(() => goToNext(), AUTO_SCROLL_MS)
+    if (showCount <= 1) return
+    const id = setInterval(goToNext, AUTO_SCROLL_MS)
     return () => clearInterval(id)
-  }, [paused, hidden, showCount])
-
-  useEffect(() => {
-    const onVisibilityChange = () => setHidden(document.hidden)
-    document.addEventListener("visibilitychange", onVisibilityChange)
-    return () => document.removeEventListener("visibilitychange", onVisibilityChange)
-  }, [])
+  }, [showCount, index])
 
   useEffect(() => {
     if (showCount <= 1) return
@@ -81,13 +73,7 @@ export default function TestimonialsSection() {
         <div className="section-eyebrow">Voices from the bench &amp; bar</div>
         <h2 className="section-title">What our users are saying.</h2>
 
-        <div
-          className="testimonials-carousel"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onFocusCapture={() => setPaused(true)}
-          onBlurCapture={() => setPaused(false)}
-        >
+        <div className="testimonials-carousel">
           <button
             type="button"
             className="testimonials-arrow testimonials-arrow-prev"
@@ -121,28 +107,49 @@ export default function TestimonialsSection() {
                 transitionDuration: animate ? `${TRANSITION_MS}ms` : "0ms",
               }}
             >
-              {slides.map((t, idx) =>
-                t.cardImage ? (
-                  <figure
-                    className="testimonial-card testimonial-card-image"
-                    key={`${t.name}-${idx}`}
-                  >
-                    <img src={t.photo} alt={t.name} />
-                  </figure>
-                ) : (
-                  <figure className="testimonial-card" key={`${t.name}-${idx}`}>
-                    <div className="testimonial-photo" aria-hidden="true">
-                      {t.photo && <img src={t.photo} alt={t.name} />}
-                    </div>
-                    <div className="testimonial-body">
-                      <blockquote className="testimonial-quote">{t.quote}</blockquote>
-                      <figcaption className="testimonial-attribution">
-                        {t.attribution}
-                      </figcaption>
-                    </div>
-                  </figure>
-                )
-              )}
+              {slides.map((t, idx) => (
+                <figure className="testimonial-card" key={`${t.name}-${idx}`}>
+                  <div className="testimonial-person">
+                    <span className="testimonial-avatar" aria-hidden="true">
+                      {t.photo ? (
+                        <img src={t.photo} alt={t.name} />
+                      ) : (
+                        <span className="testimonial-avatar-initial">
+                          {t.name.replace(/^Adv\.\s*/, "").charAt(0)}
+                        </span>
+                      )}
+                    </span>
+                    <figcaption className="testimonial-attribution">
+                      <span className="testimonial-name">{t.name}</span>
+                      {t.role && <span className="testimonial-role">{t.role}</span>}
+                    </figcaption>
+                  </div>
+                  <div className="testimonial-body">
+                    {t.tag && (
+                      <div className="testimonial-tag">
+                        <svg
+                          className="testimonial-tag-icon"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M12 3v18" />
+                          <path d="M5 7h14" />
+                          <path d="M7 7 4 14h6L7 7Z" />
+                          <path d="M17 7l-3 7h6l-3-7Z" />
+                          <path d="M8 21h8" />
+                        </svg>
+                        {t.tag}
+                      </div>
+                    )}
+                    <blockquote className="testimonial-quote">{t.quote}</blockquote>
+                  </div>
+                </figure>
+              ))}
             </div>
           </div>
 
@@ -170,6 +177,25 @@ export default function TestimonialsSection() {
               />
             </svg>
           </button>
+        </div>
+
+        <div className="testimonials-dots" role="tablist" aria-label="Testimonials">
+          {TESTIMONIALS.map((t, i) => {
+            const active = ((index - 1) % showCount + showCount) % showCount === i
+            return (
+              <button
+                type="button"
+                key={t.name}
+                className={`testimonials-dot${active ? " is-active" : ""}`}
+                onClick={() => {
+                  setAnimate(true)
+                  setIndex(i + 1)
+                }}
+                aria-label={`Go to testimonial ${i + 1}`}
+                aria-selected={active}
+              />
+            )
+          })}
         </div>
       </div>
     </section>

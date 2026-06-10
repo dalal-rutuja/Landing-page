@@ -1,11 +1,12 @@
+import milindKelkarPhoto from "../../assets/milind-kelkar.jpg"
+
 export default function MentorSection() {
   return (
     <section className="mentor-section">
       <div className="mentor-container">
         <div className="mentor-grid">
           <div className="mentor-portrait">
-            <div className="mentor-portrait-initial">MK</div>
-            <div className="mentor-portrait-label">Replace with photo</div>
+            <img className="mentor-portrait-img" src={milindKelkarPhoto} alt="Milind Kelkar" />
           </div>
           <div className="mentor-content">
             <div className="mentor-eyebrow">Mentor &amp; Advisor</div>
