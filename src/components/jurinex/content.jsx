@@ -2,6 +2,9 @@
 
 import amarSomanPhoto from "../../assets/amar-soman.png"
 import amitYadkikarPhoto from "../../assets/amit-yadkikar.png"
+import anoopPatilPhoto from "../../assets/anoop-patil.png"
+import shaileshChapalgaonkarPhoto from "../../assets/shailesh-chapalgaonkar.png"
+import akshayKulkarniPhoto from "../../assets/akshay-kulkarni.png"
 
 export const SIDEBAR_ICONS = {
   dashboard: (
@@ -274,6 +277,8 @@ export const TESTIMONIALS = [
       "\"Our work demands precision — the margin for error is thin. I'd always wondered how accurate AI could really be in the legal domain, and Jurinex has proved me wrong. I was working with it properly within hours, no training needed. The responses are sharp and save real time, and the combination of ease and effectiveness is the best part. Drafting that once took hours now takes thirty minutes — time I can put back into case strategy with my clients and into court appearances. For a lawyer, time is the one resource you can't recover. Jurinex gives it back.\"",
     attribution: "— Adv. Shailesh Chapalgaonkar, High Court, Chhatrapati Sambhajinagar",
     name: "Adv. Shailesh Chapalgaonkar",
+    photo: shaileshChapalgaonkarPhoto,
+    cardImage: true,
   },
   {
     quote:
@@ -287,6 +292,8 @@ export const TESTIMONIALS = [
     attribution:
       "— Adv. Akshay Kulkarni, Associate, Chamber of Adv. Yadkikar, Chhatrapati Sambhajinagar",
     name: "Adv. Akshay Kulkarni",
+    photo: akshayKulkarniPhoto,
+    cardImage: true,
   },
 ]
 
@@ -319,6 +326,7 @@ export const TEAM = [
   },
   {
     initial: "A",
+    photo: anoopPatilPhoto,
     name: "Adv. Anoop Patil",
     line1: "Legal Expert",
     line2: "Chh. Sambhajinagar High Court",

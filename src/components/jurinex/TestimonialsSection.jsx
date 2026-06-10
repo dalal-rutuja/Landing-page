@@ -121,19 +121,28 @@ export default function TestimonialsSection() {
                 transitionDuration: animate ? `${TRANSITION_MS}ms` : "0ms",
               }}
             >
-              {slides.map((t, idx) => (
-                <figure className="testimonial-card" key={`${t.name}-${idx}`}>
-                  <div className="testimonial-photo" aria-hidden="true">
-                    {t.photo && <img src={t.photo} alt={t.name} />}
-                  </div>
-                  <div className="testimonial-body">
-                    <blockquote className="testimonial-quote">{t.quote}</blockquote>
-                    <figcaption className="testimonial-attribution">
-                      {t.attribution}
-                    </figcaption>
-                  </div>
-                </figure>
-              ))}
+              {slides.map((t, idx) =>
+                t.cardImage ? (
+                  <figure
+                    className="testimonial-card testimonial-card-image"
+                    key={`${t.name}-${idx}`}
+                  >
+                    <img src={t.photo} alt={t.name} />
+                  </figure>
+                ) : (
+                  <figure className="testimonial-card" key={`${t.name}-${idx}`}>
+                    <div className="testimonial-photo" aria-hidden="true">
+                      {t.photo && <img src={t.photo} alt={t.name} />}
+                    </div>
+                    <div className="testimonial-body">
+                      <blockquote className="testimonial-quote">{t.quote}</blockquote>
+                      <figcaption className="testimonial-attribution">
+                        {t.attribution}
+                      </figcaption>
+                    </div>
+                  </figure>
+                )
+              )}
             </div>
           </div>
 
